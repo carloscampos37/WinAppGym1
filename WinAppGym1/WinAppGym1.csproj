@@ -33,8 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ctr_Ayuda">
+      <HintPath>..\..\..\..\comunNET\c#\DLL\Ctr_Ayuda.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +58,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="..\..\..\..\comunNET\c#\Class\ModFuncNet.cs">
+      <Link>Class\ModFuncNet.cs</Link>
+    </Compile>
+    <Compile Include="FrmSocios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmSocios.designer.cs">
+      <DependentUpon>FrmSocios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\BioTemplate.cs" />
+    <Compile Include="Models\Correlativos.cs" />
+    <Compile Include="Models\CustomReport.cs" />
+    <Compile Include="Models\FaceTempEx.cs" />
+    <Compile Include="Models\FingerVein.cs" />
+    <Compile Include="Models\FingerVeinEx.cs" />
+    <Compile Include="Models\Genero.cs" />
+    <Compile Include="Models\LossCard.cs" />
+    <Compile Include="Models\Membresias.cs" />
+    <Compile Include="Models\MembresiasxSocio.cs" />
+    <Compile Include="Data\Model1.cs" />
+    <Compile Include="Models\OfflinePermitDoors.cs" />
+    <Compile Include="Models\OfflinePermitGroups.cs" />
+    <Compile Include="Models\OfflinePermitUsers.cs" />
+    <Compile Include="Models\ParamSet.cs" />
+    <Compile Include="Models\Periodos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\ReportField.cs" />
+    <Compile Include="Models\STD_WiegandFmt.cs" />
+    <Compile Include="Models\TEMPLATEEx.cs" />
+    <Compile Include="Models\TmpPermitDoors.cs" />
+    <Compile Include="Models\TmpPermitGroups.cs" />
+    <Compile Include="Models\TmpPermitUsers.cs" />
+    <Compile Include="Models\USERINFO.cs" />
+    <Compile Include="Models\zz_Membresias.cs" />
+    <Compile Include="Models\zz_userinfo.cs" />
+    <EmbeddedResource Include="FrmSocios.resx">
+      <DependentUpon>FrmSocios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +106,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
