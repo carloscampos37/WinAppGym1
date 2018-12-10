@@ -1,4 +1,4 @@
-namespace WinAppGym1
+namespace WinAppGym1.Models
 {
     using System;
     using System.Collections.Generic;

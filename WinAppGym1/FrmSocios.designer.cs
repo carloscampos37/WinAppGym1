@@ -592,19 +592,14 @@
             // 
             // TxtApellidos
             // 
-            this.TxtApellidos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingUserInfo, "Name", true));
             this.TxtApellidos.Location = new System.Drawing.Point(24, 77);
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(392, 22);
             this.TxtApellidos.TabIndex = 17;
             // 
-            // bindingUserInfo
-            // 
-            // 
             // DtpInicio
             // 
             this.DtpInicio.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.DtpInicio.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingUserInfo, "acc_startdate", true));
             this.DtpInicio.Enabled = false;
             this.DtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpInicio.Location = new System.Drawing.Point(368, 126);
@@ -614,7 +609,6 @@
             // 
             // TxtNombres
             // 
-            this.TxtNombres.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingUserInfo, "lastname", true));
             this.TxtNombres.Location = new System.Drawing.Point(255, 30);
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(339, 22);
@@ -622,8 +616,6 @@
             // 
             // dtpcumpleaños
             // 
-            this.dtpcumpleaños.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingUserInfo, "BIRTHDAY", true));
-            this.dtpcumpleaños.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingUserInfo, "BIRTHDAY", true));
             this.dtpcumpleaños.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpcumpleaños.Location = new System.Drawing.Point(255, 126);
             this.dtpcumpleaños.Name = "dtpcumpleaños";
@@ -632,7 +624,7 @@
             // 
             // TxtCodigo
             // 
-            this.TxtCodigo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingUserInfo, "Badgenumber", true));
+            this.TxtCodigo.Enabled = false;
             this.TxtCodigo.Location = new System.Drawing.Point(128, 30);
             this.TxtCodigo.Name = "TxtCodigo";
             this.TxtCodigo.Size = new System.Drawing.Size(101, 22);
@@ -640,7 +632,7 @@
             // 
             // TxtId
             // 
-            this.TxtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingUserInfo, "USERID", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
+            this.TxtId.Enabled = false;
             this.TxtId.Location = new System.Drawing.Point(24, 30);
             this.TxtId.Name = "TxtId";
             this.TxtId.Size = new System.Drawing.Size(79, 22);

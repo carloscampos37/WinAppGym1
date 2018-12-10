@@ -83,8 +83,6 @@
     <Compile Include="Models\OfflinePermitUsers.cs" />
     <Compile Include="Models\ParamSet.cs" />
     <Compile Include="Models\Periodos.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ReportField.cs" />
     <Compile Include="Models\STD_WiegandFmt.cs" />
     <Compile Include="Models\TEMPLATEEx.cs" />
@@ -94,6 +92,8 @@
     <Compile Include="Models\USERINFO.cs" />
     <Compile Include="Models\zz_Membresias.cs" />
     <Compile Include="Models\zz_userinfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmSocios.resx">
       <DependentUpon>FrmSocios.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,5 +120,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

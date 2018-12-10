@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WinAppGym1;
+using WinAppGym1.Models;
 using WinAppGym1.Properties;
 
 namespace WinAppGym
@@ -15,11 +17,14 @@ namespace WinAppGym
         #region Variables Privadas
 
         int vUserId;
+        int vCorrelativoId;
         int vCorrelativoSocio;
         int vCorrelativoGrupo;
         bool  vAdiciona;
+        int vTipo;
         byte[] imagen;
-        private string VGCnxSql = Settings.Default.CadenaConexion;
+        Object vUserInfo;
+         private string VGCnxSql = Settings.Default.CadenaConexion;
         private ModFuncNet FuncNet = new ModFuncNet();
 
         #endregion
@@ -70,26 +75,13 @@ namespace WinAppGym
         {
 
         }
-        public Image byteArrayToImage(byte[] byteArrayIn)
-        {try
-            { 
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
-            }
-            catch
-            
-            {
-                return null;
-            }
-        }
-        private void DgvSocios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       private void DgvSocios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             using (Model1 bd = new Model1())
             {
                 DataGridViewImageCell cell = this.DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
                 imagen = (byte[])cell.Value;
-                pictFoto.Image = byteArrayToImage(imagen);
+                pictFoto.Image = FuncNet.byteArrayToImage(imagen);
 
                 vUserId = Convert.ToInt32(DgvSocios.Rows[e.RowIndex].Cells["Id"].Value );
                  var query = from MemSocio in bd.MembresiasxSocio
@@ -103,19 +95,7 @@ namespace WinAppGym
 
         }
 
-        private void ActivaTab(int Pos,int Nro,  int NroExcepto=99)
-        {
-            int J;
-            for (J = 1; J <= Nro; J++)
-            {
-                if (J != NroExcepto)
-                    TabSocios.TabPages[J - 1].Enabled = false;
-            }
-            TabSocios.TabPages[Pos - 1].Enabled = true;
-            TabSocios.SelectedIndex = Pos - 1;
-
-        }
-
+ 
         #endregion
 
         #region Botones
@@ -128,16 +108,24 @@ namespace WinAppGym
             DtpInicio.Value = Convert.ToDateTime("01-01-1900");
             DtpTermino.Value = Convert.ToDateTime("01-01-1900");
             TxtCelular.Text = string.Empty;
-            vAdiciona = true;
-            pnlSocio.Visible = false;
+           pnlSocio.Visible = false;
             pictDetalle.Image = null;
             ActivaBotones(false, false, false, false, false, true, true, false, false);
 
-            using (Model1 Bd = new Model1())
+            using (Model1 bd = new Model1())
             {
-                    TxtCodigo.Text = Convert.ToString(vCorrelativoSocio);
+                var Resultado =(from dd in bd.Correlativos
+                                select dd).First();
+
+               vCorrelativoSocio =Convert.ToInt32(Resultado.Codigo+1);
+               TxtCodigo.Text = Convert.ToString(vCorrelativoSocio);
+               vCorrelativoId = Convert.ToInt32(Resultado.CodId + 1);
+               TxtId.Text = Convert.ToString(vCorrelativoId);
+
             }
-            ActivaTab(2, 5);
+            vAdiciona = true;
+            vTipo = 1;
+            FuncNet.ActivaTab(2, 5,ref TabSocios);
 
         }
         private void BntModificar_Click_1(object sender, EventArgs e)
@@ -156,55 +144,95 @@ namespace WinAppGym
                 TxtApellidos.Text = Resultado.lastname;
                 TxtNombres.Text = Resultado.Name;
                 TxtId.Text = Convert.ToString(Resultado.USERID);
-                TxtCelular.Text = Resultado.FPHONE;
-                TxtCelular.Text = Resultado.OPHONE;
+                TxtCodigo.Text = Convert.ToString(Resultado.Badgenumber );
+                               TxtCelular.Text = Resultado.OPHONE;
                 TxtCorreo.Text = Resultado.email;
-                dtpcumpleaños.Value = Convert.ToDateTime(Resultado.BIRTHDAY);
-                DtpInicio.Value = Convert.ToDateTime(Resultado.acc_enddate);
-                DtpTermino.Value = Convert.ToDateTime(Resultado.acc_enddate);
+                dtpcumpleaños.Value = Convert.ToDateTime(FuncNet.EsNulo(Resultado.BIRTHDAY,"01-01-1900"));
+                DtpInicio.Value = Convert.ToDateTime(FuncNet.EsNulo(Resultado.acc_enddate,"01-01-1900"));
+                DtpTermino.Value = Convert.ToDateTime(FuncNet.EsNulo(Resultado.acc_enddate,"01-01-1900"));
             }
 
-            ActivaTab(2, 5);
+            FuncNet.ActivaTab(2, 5, ref TabSocios);
 
             vAdiciona = false;
+            vTipo = 2;
             pnlSocio.Visible = false;
-            pictDetalle.Image = byteArrayToImage(imagen);
+            pictDetalle.Image = FuncNet.byteArrayToImage(imagen);
 
             ActivaBotones(false, false, false, false, false, true, true, false, false);
 
         }
         private void BntPagos_Click(object sender, EventArgs e)
         {
-            ActivaTab(5, 5);
+            FuncNet.ActivaTab(5, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
                 DgvSocios.DataSource = bd.USERINFO.ToList();
             }
-            pictPagos.Image = byteArrayToImage(imagen);
+            pictPagos.Image = FuncNet.byteArrayToImage(imagen);
             ActivaBotones(false, false, false, false, false, true, true, false, false);
 
         }
         private void BntGrabar_Click(object sender, EventArgs e)
         {
-            ActivaTab(1, 5);
             using (Model1 bd = new Model1())
             {
-                DgvSocios.DataSource = bd.USERINFO.ToList();
-            }
+                if (vTipo <= 2)
+                {
+                    if (vAdiciona)
+                    {
+                        USERINFO user = new USERINFO();
 
+                        user.Badgenumber = TxtCodigo.Text;
+                        user.Name = TxtNombres.Text;
+                        user.lastname = TxtApellidos.Text;
+                        user.BIRTHDAY = dtpcumpleaños.Value;
+                        user.email = TxtCorreo.Text;
+                        user.OPHONE = TxtCelular.Text;
+                        user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
+                        bd.USERINFO.Add(user);
+                        bd.SaveChanges();
+
+                        var Resultado = (from dd in bd.Correlativos
+                                         select dd).First();
+
+                     
+                        Resultado.CodId += 1;
+                        Resultado.Codigo += 1;
+                        bd.SaveChanges();
+                    }
+                    else
+                    {
+                        var user = (from dato in bd.USERINFO
+                                         where dato.USERID == (vUserId)
+                                         select dato).First();
+
+                        user.Badgenumber = TxtCodigo.Text;
+                        user.Name = TxtNombres.Text;
+                        user.lastname = TxtApellidos.Text;
+                        user.BIRTHDAY = dtpcumpleaños.Value;
+                        user.email = TxtCorreo.Text;
+                        user.OPHONE = TxtCelular.Text;
+                        user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
+                        bd.SaveChanges();
+
+                    }
+                }
+            }
+            FuncNet.ActivaTab(1, 5,ref TabSocios);
             ActivaBotones(true, true, true, true, true, false, false, false, true);
 
         }
         private void BntCancelar_Click(object sender, EventArgs e)
         {
-            ActivaTab(1, 5);
+            FuncNet.ActivaTab(1, 5, ref TabSocios);
 
             ActivaBotones(true, true, true, true, true, false, false, false, true);
 
         }
         private void BntImprimir_Click(object sender, EventArgs e)
         {
-            ActivaTab(1, 5);
+            FuncNet.ActivaTab(1, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
                 DgvSocios.DataSource = bd.USERINFO.ToList();
@@ -214,7 +242,7 @@ namespace WinAppGym
 
         private void BntMembGrupo_Click(object sender, EventArgs e)
         {
-            ActivaTab(4, 5);
+            FuncNet.ActivaTab(4, 5, ref TabSocios);
             string vCondicion = FuncNet.Izquierda(Convert.ToString(DateTime.Now), 10);
             ctr_AyuMembGrupo.Filtro = vCondicion + " between InicioVigencia AND TerminoVigencia AND estadoAnulado=0 ";
             ActivaBotones(false, false, false, false, false, true, true, false, false);
@@ -274,9 +302,9 @@ namespace WinAppGym
 
         private void BntMembPersonal_Click(object sender, EventArgs e)
         {
-            ActivaTab(3, 5);
+            FuncNet.ActivaTab(3, 5, ref TabSocios);
 
-            pictPersonal.Image = pictFoto.Image = byteArrayToImage(imagen);
+            pictPersonal.Image = pictFoto.Image = FuncNet.byteArrayToImage(imagen);
             ActivaBotones(false, false, false, false, false, true, true, false, false);
 
         }
