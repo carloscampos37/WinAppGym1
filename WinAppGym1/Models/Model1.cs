@@ -8,7 +8,7 @@ namespace WinAppGym1.Models
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model11")
+            : base("name=Model14")
         {
         }
 
@@ -107,10 +107,6 @@ namespace WinAppGym1.Models
             modelBuilder.Entity<Periodos>()
                 .Property(e => e.Descripcion)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Periodos>()
-                .Property(e => e.CantidadMeses)
-                .HasPrecision(12, 2);
 
             modelBuilder.Entity<ReportField>()
                 .Property(e => e.TableName)

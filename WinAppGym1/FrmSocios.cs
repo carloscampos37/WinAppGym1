@@ -17,7 +17,7 @@ namespace WinAppGym
         #region Variables Privadas
 
         int vUserId;
-        int vCorrelativoId;
+         int vCorrelativoId;
         int vCorrelativoSocio;
         int vCorrelativoGrupo;
         bool  vAdiciona;
@@ -49,6 +49,104 @@ namespace WinAppGym
 
         #region Metodos privados
 
+        private void GrabaAdiciona()
+        {
+            using (Model1 bd = new Model1())
+            {
+                USERINFO user = new USERINFO();
+
+                user.Badgenumber = TxtCodigo.Text;
+                user.Name = TxtNombres.Text;
+                user.lastname = TxtApellidos.Text;
+                user.BIRTHDAY = dtpcumpleaños.Value;
+                user.email = TxtCorreo.Text;
+                user.Gender = TxtGenero.Text;
+                user.OPHONE = TxtCelular.Text;
+                user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
+
+                user.DEFAULTDEPTID = 2;
+                user.ATT = 1;
+                user.INLATE = 1;
+                user.OUTEARLY = 1;
+                user.OVERTIME = 1;
+                user.SEP = 1;
+                user.HOLIDAY=1;
+                user.privilege =0;
+                user.AutoSchPlan = 1;
+                user.MinAutoSchInterval = 24;
+                user.RegisterOT = 1;
+                user.status = 0;
+                
+                bd.USERINFO.Add(user);
+                bd.SaveChanges();
+
+                var Resultado = (from dd in bd.Correlativos
+                                 select dd).First();
+
+
+                Resultado.codId += 1;
+                Resultado.Codigo += 1;
+                bd.SaveChanges();
+            }
+        }
+        private void GrabaModifica()
+        {
+            using (Model1 bd = new Model1())
+            {
+                var user = (from dato in bd.USERINFO
+                            where dato.USERID == (vUserId)
+                            select dato).First();
+
+                user.Badgenumber = TxtCodigo.Text;
+                user.Name = TxtNombres.Text;
+                user.lastname = TxtApellidos.Text;
+                user.BIRTHDAY = dtpcumpleaños.Value;
+                user.email = TxtCorreo.Text;
+                user.Gender = TxtGenero.Text;
+                user.OPHONE = TxtCelular.Text;
+                user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
+                bd.SaveChanges();
+            }
+
+        }
+        private void GrabaMembP()
+        {
+            using (Model1 bd =new Model1())
+            {
+                MembresiasxSocio membsocio = new MembresiasxSocio();
+
+                membsocio.UserInfoID = vUserId;
+                membsocio.MembresiasID  = Convert.ToInt32(ctr_AyuMembPersonal.Codigo);
+                membsocio.FechaInicio = DtpInicioMp.Value;
+                membsocio.FechaFinal = DtpTerminoMp.Value ;
+                membsocio.fechaMaximadePago = DtpPagoMp.Value;
+
+                membsocio.Precio = Convert.ToDecimal(TxtPrecio.Text);
+                if (ChkTodo.Checked)
+                {
+                    membsocio.PagosaCuenta = membsocio.Precio;
+                    membsocio.EstadoCancelacion = true;
+                }
+                else
+                {
+                    membsocio.PagosaCuenta = Convert.ToDecimal(TxtACuentaMp.Text);
+                    membsocio.EstadoCancelacion = false;
+
+                }
+                bd.MembresiasxSocio.Add(membsocio);
+                bd.SaveChanges();
+
+                var user = (from dato in bd.USERINFO
+                            where dato.USERID == (vUserId)
+                            select dato).First();
+
+                user.acc_startdate = DtpInicioMp.Value;
+                user.acc_enddate = DtpTerminoMp.Value;
+                bd.SaveChanges();
+
+
+            }
+        }
         private void ActivaBotones(bool adicionar,bool modificar,bool membp, bool membg, bool pagar ,bool guardar, bool cancelar, bool imprimir,bool salir )
         {
             BntAdicionar.Visible = adicionar;
@@ -62,7 +160,6 @@ namespace WinAppGym
             BntSalir.Visible = salir;
 
         }
-
         private void CargarAyudas()
         {
             ctr_AyuMembPersonal.CadenaCone = VGCnxSql;
@@ -75,25 +172,7 @@ namespace WinAppGym
         {
 
         }
-       private void DgvSocios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            using (Model1 bd = new Model1())
-            {
-                DataGridViewImageCell cell = this.DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
-                imagen = (byte[])cell.Value;
-                pictFoto.Image = FuncNet.byteArrayToImage(imagen);
 
-                vUserId = Convert.ToInt32(DgvSocios.Rows[e.RowIndex].Cells["Id"].Value );
-                 var query = from MemSocio in bd.MembresiasxSocio
-                             join Memb in bd.Membresias on MemSocio.MembresiasID equals Memb.ID 
-                             where MemSocio.UserInfoID== vUserId
-                             orderby MemSocio.FechaFinal descending
-                             select new { MemSocio.UserInfoID,Memb.Descripcion,MemSocio.FechaInicio, MemSocio.FechaFinal  };
-
-            DgvMembresias.DataSource = query.ToList();
-            }
-
-        }
 
  
         #endregion
@@ -119,7 +198,7 @@ namespace WinAppGym
 
                vCorrelativoSocio =Convert.ToInt32(Resultado.Codigo+1);
                TxtCodigo.Text = Convert.ToString(vCorrelativoSocio);
-               vCorrelativoId = Convert.ToInt32(Resultado.CodId + 1);
+               vCorrelativoId = Convert.ToInt32(Resultado.codId + 1);
                TxtId.Text = Convert.ToString(vCorrelativoId);
 
             }
@@ -167,7 +246,7 @@ namespace WinAppGym
             FuncNet.ActivaTab(5, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
-                DgvSocios.DataSource = bd.USERINFO.ToList();
+           
             }
             pictPagos.Image = FuncNet.byteArrayToImage(imagen);
             ActivaBotones(false, false, false, false, false, true, true, false, false);
@@ -181,47 +260,29 @@ namespace WinAppGym
                 {
                     if (vAdiciona)
                     {
-                        USERINFO user = new USERINFO();
-
-                        user.Badgenumber = TxtCodigo.Text;
-                        user.Name = TxtNombres.Text;
-                        user.lastname = TxtApellidos.Text;
-                        user.BIRTHDAY = dtpcumpleaños.Value;
-                        user.email = TxtCorreo.Text;
-                        user.OPHONE = TxtCelular.Text;
-                        user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
-                        bd.USERINFO.Add(user);
-                        bd.SaveChanges();
-
-                        var Resultado = (from dd in bd.Correlativos
-                                         select dd).First();
-
-                     
-                        Resultado.CodId += 1;
-                        Resultado.Codigo += 1;
-                        bd.SaveChanges();
+                        GrabaAdiciona();
+ 
                     }
                     else
                     {
-                        var user = (from dato in bd.USERINFO
-                                         where dato.USERID == (vUserId)
-                                         select dato).First();
-
-                        user.Badgenumber = TxtCodigo.Text;
-                        user.Name = TxtNombres.Text;
-                        user.lastname = TxtApellidos.Text;
-                        user.BIRTHDAY = dtpcumpleaños.Value;
-                        user.email = TxtCorreo.Text;
-                        user.OPHONE = TxtCelular.Text;
-                        user.PHOTO = FuncNet.ImageTobyteArray(pictDetalle.Image);
-                        bd.SaveChanges();
-
+                        GrabaModifica();
                     }
+                }
+                if (vTipo==3)
+                {
+                    GrabaMembP();
                 }
             }
             FuncNet.ActivaTab(1, 5,ref TabSocios);
             ActivaBotones(true, true, true, true, true, false, false, false, true);
+            if (vTipo<3)
+            {
+                if (vTipo == 1)
+                {
+                    TxtBuscar.Text = TxtCodigo.Text;
+                }
 
+            }
         }
         private void BntCancelar_Click(object sender, EventArgs e)
         {
@@ -235,11 +296,49 @@ namespace WinAppGym
             FuncNet.ActivaTab(1, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
-                DgvSocios.DataSource = bd.USERINFO.ToList();
+           
             }
 
         }
+        private void BntMembPersonal_Click(object sender, EventArgs e)
+        {
+ 
+            using (Model1 bd = new Model1())
+            {
+                DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
+                imagen = (byte[])cell.Value;
+                pictPersonal.Image = FuncNet.byteArrayToImage(imagen);
 
+                lLblNombres.Text = DgvSocios.CurrentRow.Cells["Nombres"].Value.ToString();
+                lLblNombres.Text+=" "+ DgvSocios.CurrentRow.Cells["Apellidos"].Value.ToString();
+
+                var query = from MemSocio in bd.MembresiasxSocio
+                            join Memb in bd.Membresias on MemSocio.MembresiasID equals Memb.ID
+                            where MemSocio.UserInfoID ==( vUserId)
+                            orderby MemSocio.FechaFinal descending
+                            select new { MemSocio.UserInfoID, Memb.Descripcion, MemSocio.FechaInicio, MemSocio.FechaFinal };
+
+                dgvMembPersonal.DataSource = query.ToList();
+            }
+              FuncNet.ActivaTab(3, 5, ref TabSocios);
+            ActivaBotones(false, false, false, false, false, true, true, false, false);
+
+        }
+        private void BntImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string imagen = openFileDialog1.FileName;
+                    pictDetalle.Image = Image.FromFile(imagen);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void BntMembGrupo_Click(object sender, EventArgs e)
         {
             FuncNet.ActivaTab(4, 5, ref TabSocios);
@@ -267,27 +366,43 @@ namespace WinAppGym
 
                     var Result = (from dd in bd.USERINFO
                                   where dd.Badgenumber.StartsWith(TxtBuscar.Text)
-                                  select dd);
+                                  select new
+                                  {dd.USERID,
+                                      dd.Badgenumber,
+                                      dd.Name,
+                                      dd.lastname,
+                                      dd.acc_startdate,
+                                      dd.acc_enddate,
+                                      dd.PHOTO 
+                                  });
 
-
-                    DgvSocios.DataSource = Result.ToList();
+                     DgvSocios.DataSource = Result.ToList();
 
                 }
             }
             else
             {
                 if (!(TxtBuscar.Text == ""))
-                {
+                    {
                     using (Model1 bd = new Model1())
                     {
-                        var Resultado = bd.USERINFO.Where(p => p.lastname.StartsWith(TxtBuscar.Text));
+                        var Resultado = (from dd in bd.USERINFO
+                                         where dd.lastname.Contains(TxtBuscar.Text)
+                                         select new
+                                         {
+                                             dd.USERID,
+                                             dd.Badgenumber,
+                                             dd.Name,
+                                             dd.lastname,
+                                             dd.acc_startdate,
+                                             dd.acc_enddate,
+                                             dd.PHOTO
+                                         });
                         DgvSocios.DataSource = Resultado.ToList();
                     }
                 }
-                else
-                {
-                    DgvSocios.DataSource = null;
-                }
+
+                
             }
 
         }
@@ -300,29 +415,107 @@ namespace WinAppGym
 
         #endregion
 
-        private void BntMembPersonal_Click(object sender, EventArgs e)
-        {
-            FuncNet.ActivaTab(3, 5, ref TabSocios);
 
-            pictPersonal.Image = pictFoto.Image = FuncNet.byteArrayToImage(imagen);
-            ActivaBotones(false, false, false, false, false, true, true, false, false);
+         private void ctr_AyuMembPersonal_AlDevolverDato(object Sender, DataRow e)
+        {
+            string id = ctr_AyuMembPersonal.Codigo;
+            using (Model1 bd = new Model1())
+            {
+                int vId = Convert.ToInt32(id);
+
+                var Resultado = (from dd in bd.Membresias
+                                 join ee in bd.Periodos on dd.PeriodosID equals ee.ID 
+                                 where dd.ID ==vId
+                                 select new {ee.Meses,ee.Dias,dd.Descripcion,
+                                     dd.Precio } ).First();
+
+                TxtPrecio.Text =Convert.ToString( Resultado.Precio);
+                TxtMeses.Text = Convert.ToString(Resultado.Meses);
+                TxtDias.Text = Convert.ToString(Resultado.Dias);
+                DtpInicioMp.Value =DateTime.Now;
+             
+            }
 
         }
 
-        private void BntImagen_Click(object sender, EventArgs e)
+        private void ctr_AyuMembPersonal_Load(object sender, EventArgs e)
         {
-            try
+
+        }
+
+        private void DtpInicioMp_ValueChanged(object sender, EventArgs e)
+        {
+            int vMeses = Convert.ToInt32(TxtMeses.Text);
+            int vDias= Convert.ToInt32(TxtDias.Text);
+            DtpTerminoMp.Value = DtpInicioMp.Value.AddMonths(vMeses);
+            DtpTerminoMp.Value = DtpTerminoMp.Value.AddMonths(vDias);
+            DtpPagoMp.Value = DtpInicioMp.Value.AddDays(-1);
+
+        }
+
+        private void TxtACuentaMp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtNombres_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = e.KeyChar.ToString().ToUpper().ToCharArray(0, 1)[0];
+
+        }
+
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = e.KeyChar.ToString().ToUpper().ToCharArray(0, 1)[0];
+
+        }
+
+        private void TxtGenero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtGenero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = e.KeyChar.ToString().ToUpper().ToCharArray(0, 1)[0];
+
+        }
+
+        private void TxtApellidos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtBuscar_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = e.KeyChar.ToString().ToUpper().ToCharArray(0, 1)[0];
+
+        }
+
+        private void DgvSocios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (Model1 bd = new Model1())
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    string imagen = openFileDialog1.FileName;
-                    pictDetalle.Image = Image.FromFile(imagen);
-                }
+
+                vUserId = Convert.ToInt32(DgvSocios.CurrentRow.Cells["Id"].Value);
+                var query = from MemSocio in bd.MembresiasxSocio
+                            join Memb in bd.Membresias on MemSocio.MembresiasID equals Memb.ID
+                            where MemSocio.UserInfoID == vUserId
+                            orderby MemSocio.FechaFinal descending
+                            select new { MemSocio.UserInfoID, Memb.Descripcion, MemSocio.FechaInicio, MemSocio.FechaFinal };
+
+                DgvMembresias.DataSource = query.ToList();
+                DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
+                imagen = (byte[])cell.Value;
+                pictFoto.Image = FuncNet.byteArrayToImage(imagen);
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message );
-            }
+
         }
     }
 }

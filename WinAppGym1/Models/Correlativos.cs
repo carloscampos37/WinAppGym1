@@ -11,7 +11,7 @@ namespace WinAppGym1.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        public int? CodId { get; set; }
+        public int? codId { get; set; }
 
         public int? Codigo { get; set; }
 

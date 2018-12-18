@@ -19,9 +19,11 @@ namespace WinAppGym1.Models
         [StringLength(30)]
         public string Descripcion { get; set; }
 
-        public decimal? CantidadMeses { get; set; }
+        public int? Meses { get; set; }
 
         public bool? EstadoAnulado { get; set; }
+
+        public int? Dias { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Membresias> Membresias { get; set; }

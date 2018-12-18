@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.TabSocios = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.DgvUnSocio = new System.Windows.Forms.DataGridView();
@@ -37,8 +36,8 @@
             this.Membresia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgvSocios = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.TxtGenero = new System.Windows.Forms.TextBox();
             this.pictDetalle = new System.Windows.Forms.PictureBox();
             this.pnlSocio = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
@@ -72,14 +72,32 @@
             this.BntImagen = new System.Windows.Forms.Button();
             this.DtpTermino = new System.Windows.Forms.DateTimePicker();
             this.TxtApellidos = new System.Windows.Forms.TextBox();
-            this.bindingUserInfo = new System.Windows.Forms.BindingSource(this.components);
             this.DtpInicio = new System.Windows.Forms.DateTimePicker();
             this.TxtNombres = new System.Windows.Forms.TextBox();
             this.dtpcumpleaños = new System.Windows.Forms.DateTimePicker();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
-            this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lLblNombres = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.TxtACuentaMp = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.ChkTodo = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TxtMeses = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtDias = new System.Windows.Forms.TextBox();
+            this.DtpTerminoMp = new System.Windows.Forms.DateTimePicker();
+            this.TxtPrecio = new System.Windows.Forms.TextBox();
+            this.DtpInicioMp = new System.Windows.Forms.DateTimePicker();
+            this.DtpPagoMp = new System.Windows.Forms.DateTimePicker();
+            this.dgvMembPersonal = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctr_AyuMembPersonal = new Ctr_Ayuda.Ctr_Ayuda();
             this.pictPersonal = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -100,7 +118,6 @@
             this.BntMembPersonal = new System.Windows.Forms.Button();
             this.BntModificar = new System.Windows.Forms.Button();
             this.BntAdicionar = new System.Windows.Forms.Button();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.TabSocios.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -115,15 +132,15 @@
             this.pnlSocio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingUserInfo)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictPersonal)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictPagos)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // TabSocios
@@ -210,8 +227,8 @@
             this.DgvSocios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvSocios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
-            this.Column3,
+            this.Nombres,
+            this.Apellidos,
             this.Column4,
             this.Column5,
             this.Column6,
@@ -233,23 +250,23 @@
             this.Column1.ReadOnly = true;
             this.Column1.Width = 65;
             // 
-            // Column2
+            // Nombres
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Nombres";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 74;
+            this.Nombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombres.DataPropertyName = "name";
+            this.Nombres.HeaderText = "Nombres";
+            this.Nombres.Name = "Nombres";
+            this.Nombres.ReadOnly = true;
+            this.Nombres.Width = 74;
             // 
-            // Column3
+            // Apellidos
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.DataPropertyName = "lastname";
-            this.Column3.HeaderText = "Apellidos";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 74;
+            this.Apellidos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Apellidos.DataPropertyName = "lastname";
+            this.Apellidos.HeaderText = "Apellidos";
+            this.Apellidos.Name = "Apellidos";
+            this.Apellidos.ReadOnly = true;
+            this.Apellidos.Width = 74;
             // 
             // Column4
             // 
@@ -308,6 +325,7 @@
             this.TxtBuscar.Size = new System.Drawing.Size(195, 20);
             this.TxtBuscar.TabIndex = 17;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
+            this.TxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuscar_KeyPress_1);
             // 
             // label2
             // 
@@ -340,6 +358,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.TxtGenero);
             this.panel2.Controls.Add(this.pictDetalle);
             this.panel2.Controls.Add(this.pnlSocio);
             this.panel2.Controls.Add(this.label12);
@@ -362,12 +381,20 @@
             this.panel2.Controls.Add(this.dtpcumpleaños);
             this.panel2.Controls.Add(this.TxtCodigo);
             this.panel2.Controls.Add(this.TxtId);
-            this.panel2.Controls.Add(this.cmbSexo);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(16, 17);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(838, 469);
             this.panel2.TabIndex = 0;
+            // 
+            // TxtGenero
+            // 
+            this.TxtGenero.Location = new System.Drawing.Point(478, 76);
+            this.TxtGenero.Name = "TxtGenero";
+            this.TxtGenero.Size = new System.Drawing.Size(75, 22);
+            this.TxtGenero.TabIndex = 39;
+            this.TxtGenero.TextChanged += new System.EventHandler(this.TxtGenero_TextChanged);
+            this.TxtGenero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGenero_KeyPress);
             // 
             // pictDetalle
             // 
@@ -596,6 +623,8 @@
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(392, 22);
             this.TxtApellidos.TabIndex = 17;
+            this.TxtApellidos.TextChanged += new System.EventHandler(this.TxtApellidos_TextChanged);
+            this.TxtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellidos_KeyPress);
             // 
             // DtpInicio
             // 
@@ -613,6 +642,8 @@
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(339, 22);
             this.TxtNombres.TabIndex = 16;
+            this.TxtNombres.TextChanged += new System.EventHandler(this.TxtNombres_TextChanged);
+            this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
             // dtpcumpleaños
             // 
@@ -638,16 +669,11 @@
             this.TxtId.Size = new System.Drawing.Size(79, 22);
             this.TxtId.TabIndex = 13;
             // 
-            // cmbSexo
-            // 
-            this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Location = new System.Drawing.Point(456, 76);
-            this.cmbSexo.Name = "cmbSexo";
-            this.cmbSexo.Size = new System.Drawing.Size(138, 24);
-            this.cmbSexo.TabIndex = 18;
-            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lLblNombres);
+            this.tabPage3.Controls.Add(this.panel4);
+            this.tabPage3.Controls.Add(this.dgvMembPersonal);
             this.tabPage3.Controls.Add(this.ctr_AyuMembPersonal);
             this.tabPage3.Controls.Add(this.pictPersonal);
             this.tabPage3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -658,6 +684,223 @@
             this.tabPage3.Text = "MEMBRESIAS PERSONALES";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // lLblNombres
+            // 
+            this.lLblNombres.AutoSize = true;
+            this.lLblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lLblNombres.Location = new System.Drawing.Point(47, 54);
+            this.lLblNombres.Name = "lLblNombres";
+            this.lLblNombres.Size = new System.Drawing.Size(0, 20);
+            this.lLblNombres.TabIndex = 121;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel4.Controls.Add(this.TxtACuentaMp);
+            this.panel4.Controls.Add(this.label23);
+            this.panel4.Controls.Add(this.ChkTodo);
+            this.panel4.Controls.Add(this.label22);
+            this.panel4.Controls.Add(this.label21);
+            this.panel4.Controls.Add(this.label20);
+            this.panel4.Controls.Add(this.TxtMeses);
+            this.panel4.Controls.Add(this.label16);
+            this.panel4.Controls.Add(this.label17);
+            this.panel4.Controls.Add(this.label18);
+            this.panel4.Controls.Add(this.label19);
+            this.panel4.Controls.Add(this.TxtDias);
+            this.panel4.Controls.Add(this.DtpTerminoMp);
+            this.panel4.Controls.Add(this.TxtPrecio);
+            this.panel4.Controls.Add(this.DtpInicioMp);
+            this.panel4.Controls.Add(this.DtpPagoMp);
+            this.panel4.Location = new System.Drawing.Point(60, 312);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(791, 150);
+            this.panel4.TabIndex = 120;
+            // 
+            // TxtACuentaMp
+            // 
+            this.TxtACuentaMp.Location = new System.Drawing.Point(518, 91);
+            this.TxtACuentaMp.Name = "TxtACuentaMp";
+            this.TxtACuentaMp.Size = new System.Drawing.Size(92, 20);
+            this.TxtACuentaMp.TabIndex = 51;
+            this.TxtACuentaMp.TextChanged += new System.EventHandler(this.TxtACuentaMp_TextChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(425, 92);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(68, 16);
+            this.label23.TabIndex = 50;
+            this.label23.Text = "A cuenta";
+            // 
+            // ChkTodo
+            // 
+            this.ChkTodo.AutoSize = true;
+            this.ChkTodo.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ChkTodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChkTodo.ForeColor = System.Drawing.Color.Red;
+            this.ChkTodo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ChkTodo.Location = new System.Drawing.Point(667, 8);
+            this.ChkTodo.Name = "ChkTodo";
+            this.ChkTodo.Size = new System.Drawing.Size(95, 38);
+            this.ChkTodo.TabIndex = 49;
+            this.ChkTodo.Text = "Pago total";
+            this.ChkTodo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ChkTodo.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Blue;
+            this.label22.Location = new System.Drawing.Point(-5, 46);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(844, 25);
+            this.label22.TabIndex = 48;
+            this.label22.Text = "________________________________________________________________\r\n";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(148, 7);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 16);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Dias";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(42, 7);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(54, 16);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "Meses";
+            // 
+            // TxtMeses
+            // 
+            this.TxtMeses.Location = new System.Drawing.Point(3, 26);
+            this.TxtMeses.Name = "TxtMeses";
+            this.TxtMeses.Size = new System.Drawing.Size(107, 20);
+            this.TxtMeses.TabIndex = 45;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(519, 4);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(82, 16);
+            this.label16.TabIndex = 44;
+            this.label16.Text = "F. Termino";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(380, 4);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(58, 16);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "F.Inicio";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(34, 92);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(191, 16);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "FECHA MAXIMO DE PAGO";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(248, 7);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 16);
+            this.label19.TabIndex = 41;
+            this.label19.Text = "Precio";
+            // 
+            // TxtDias
+            // 
+            this.TxtDias.Location = new System.Drawing.Point(127, 26);
+            this.TxtDias.Name = "TxtDias";
+            this.TxtDias.Size = new System.Drawing.Size(80, 20);
+            this.TxtDias.TabIndex = 40;
+            // 
+            // DtpTerminoMp
+            // 
+            this.DtpTerminoMp.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.DtpTerminoMp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpTerminoMp.Location = new System.Drawing.Point(499, 23);
+            this.DtpTerminoMp.Name = "DtpTerminoMp";
+            this.DtpTerminoMp.Size = new System.Drawing.Size(102, 20);
+            this.DtpTerminoMp.TabIndex = 39;
+            // 
+            // TxtPrecio
+            // 
+            this.TxtPrecio.Location = new System.Drawing.Point(227, 26);
+            this.TxtPrecio.Name = "TxtPrecio";
+            this.TxtPrecio.Size = new System.Drawing.Size(92, 20);
+            this.TxtPrecio.TabIndex = 36;
+            // 
+            // DtpInicioMp
+            // 
+            this.DtpInicioMp.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.DtpInicioMp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpInicioMp.Location = new System.Drawing.Point(362, 23);
+            this.DtpInicioMp.Name = "DtpInicioMp";
+            this.DtpInicioMp.Size = new System.Drawing.Size(105, 20);
+            this.DtpInicioMp.TabIndex = 38;
+            this.DtpInicioMp.ValueChanged += new System.EventHandler(this.DtpInicioMp_ValueChanged);
+            // 
+            // DtpPagoMp
+            // 
+            this.DtpPagoMp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpPagoMp.Location = new System.Drawing.Point(251, 88);
+            this.DtpPagoMp.Name = "DtpPagoMp";
+            this.DtpPagoMp.Size = new System.Drawing.Size(98, 20);
+            this.DtpPagoMp.TabIndex = 37;
+            // 
+            // dgvMembPersonal
+            // 
+            this.dgvMembPersonal.AllowUserToAddRows = false;
+            this.dgvMembPersonal.AllowUserToDeleteRows = false;
+            this.dgvMembPersonal.AllowUserToOrderColumns = true;
+            this.dgvMembPersonal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMembPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMembPersonal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.dgvMembPersonal.Location = new System.Drawing.Point(63, 141);
+            this.dgvMembPersonal.Name = "dgvMembPersonal";
+            this.dgvMembPersonal.ReadOnly = true;
+            this.dgvMembPersonal.Size = new System.Drawing.Size(550, 133);
+            this.dgvMembPersonal.TabIndex = 119;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Membresia";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 83;
+            // 
             // ctr_AyuMembPersonal
             // 
             this.ctr_AyuMembPersonal.CampoDevCod = "Id";
@@ -667,7 +910,7 @@
             this.ctr_AyuMembPersonal.Filtro = "";
             this.ctr_AyuMembPersonal.ListaAlias = "Codigo,Descripcion";
             this.ctr_AyuMembPersonal.ListaCampos = "Id,Descripcion";
-            this.ctr_AyuMembPersonal.Location = new System.Drawing.Point(60, 19);
+            this.ctr_AyuMembPersonal.Location = new System.Drawing.Point(63, 98);
             this.ctr_AyuMembPersonal.LongCod = "2";
             this.ctr_AyuMembPersonal.LongDesc = "50";
             this.ctr_AyuMembPersonal.Name = "ctr_AyuMembPersonal";
@@ -676,13 +919,15 @@
             this.ctr_AyuMembPersonal.Size = new System.Drawing.Size(559, 37);
             this.ctr_AyuMembPersonal.TabIndex = 118;
             this.ctr_AyuMembPersonal.Titulo = null;
+            this.ctr_AyuMembPersonal.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.ctr_AyuMembPersonal_AlDevolverDato);
+            this.ctr_AyuMembPersonal.Load += new System.EventHandler(this.ctr_AyuMembPersonal_Load);
             // 
             // pictPersonal
             // 
             this.pictPersonal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictPersonal.Location = new System.Drawing.Point(677, 19);
+            this.pictPersonal.Location = new System.Drawing.Point(628, 54);
             this.pictPersonal.Name = "pictPersonal";
-            this.pictPersonal.Size = new System.Drawing.Size(174, 166);
+            this.pictPersonal.Size = new System.Drawing.Size(223, 220);
             this.pictPersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictPersonal.TabIndex = 16;
             this.pictPersonal.TabStop = false;
@@ -939,8 +1184,11 @@
             this.pnlSocio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingUserInfo)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictPersonal)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -948,7 +1196,6 @@
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictPagos)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -968,7 +1215,6 @@
         private System.Windows.Forms.DateTimePicker dtpcumpleaños;
         private System.Windows.Forms.TextBox TxtCodigo;
         private System.Windows.Forms.TextBox TxtId;
-        private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
@@ -1016,18 +1262,37 @@
         internal Ctr_Ayuda.Ctr_Ayuda ctr_AyuSocios;
         internal Ctr_Ayuda.Ctr_Ayuda ctr_AyuMembGrupo;
         private System.Windows.Forms.DataGridView DgvUnSocio;
-        private System.Windows.Forms.BindingSource bindingUserInfo;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox TxtACuentaMp;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox ChkTodo;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox TxtMeses;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TxtDias;
+        private System.Windows.Forms.DateTimePicker DtpTerminoMp;
+        private System.Windows.Forms.TextBox TxtPrecio;
+        private System.Windows.Forms.DateTimePicker DtpInicioMp;
+        private System.Windows.Forms.DateTimePicker DtpPagoMp;
+        private System.Windows.Forms.DataGridView dgvMembPersonal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label lLblNombres;
+        private System.Windows.Forms.TextBox TxtGenero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewImageColumn photo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
