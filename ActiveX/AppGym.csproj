@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="..\packages\PostSharp.6.1.15\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.6.1.15\build\PostSharp.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E71E9528-CF89-4DF2-8C46-ABC8E2EFDB1E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppGym</RootNamespace>
+    <AssemblyName>AppGym</AssemblyName>
+    <ManifestCertificateThumbprint>FAD12864C943C19AA8A92C90B5BA7B9B9FF03827</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Biokey01_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <PublishUrl>D:\xian1\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\zkfinger_demo.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\zkfinger_demo.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctr_Ayuda">
+      <HintPath>..\..\..\..\comunNET\c#\DLL\Ctr_Ayuda.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="libzkfpcsharp, Version=1.0.0.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\lib\x86\libzkfpcsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=6.1.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.1.15\lib\net45\PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\comunNET\c#\Class\ModFuncNet.cs">
+      <Link>Class\ModFuncNet.cs</Link>
+    </Compile>
+    <Compile Include="Class\BitmapFormat.cs" />
+    <Compile Include="Class\Clsgym.cs" />
+    <Compile Include="Class\WebcamEventArgs.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMembresias.Designer.cs">
+      <DependentUpon>FrmMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMigraSanAndres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMigraSanAndres.Designer.cs">
+      <DependentUpon>FrmMigraSanAndres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPeriodos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPeriodos.Designer.cs">
+      <DependentUpon>FrmPeriodos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmRelacionPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmRelacionPagos.Designer.cs">
+      <DependentUpon>FrmRelacionPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSocios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSocios.designer.cs">
+      <DependentUpon>FrmSocios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIPrincipal.Designer.cs">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\acc_antiback.cs" />
+    <Compile Include="Models\acc_auxiliary.cs" />
+    <Compile Include="Models\acc_door.cs" />
+    <Compile Include="Models\acc_firstopen.cs" />
+    <Compile Include="Models\acc_firstopen_emp.cs" />
+    <Compile Include="Models\acc_holidays.cs" />
+    <Compile Include="Models\acc_interlock.cs" />
+    <Compile Include="Models\acc_levelset.cs" />
+    <Compile Include="Models\acc_levelset_door_group.cs" />
+    <Compile Include="Models\acc_levelset_emp.cs" />
+    <Compile Include="Models\acc_linkageio.cs" />
+    <Compile Include="Models\acc_map.cs" />
+    <Compile Include="Models\acc_mapdoorpos.cs" />
+    <Compile Include="Models\acc_monitor_log.cs" />
+    <Compile Include="Models\acc_morecardempgroup.cs" />
+    <Compile Include="Models\acc_morecardgroup.cs" />
+    <Compile Include="Models\acc_morecardset.cs" />
+    <Compile Include="Models\acc_reader.cs" />
+    <Compile Include="Models\acc_timeseg.cs" />
+    <Compile Include="Models\acc_wiegandfmt.cs" />
+    <Compile Include="Models\ACGroup.cs" />
+    <Compile Include="Models\acholiday.cs" />
+    <Compile Include="Models\ACTimeZones.cs" />
+    <Compile Include="Models\action_log.cs" />
+    <Compile Include="Models\ACUnlockComb.cs" />
+    <Compile Include="Models\AlarmLog.cs" />
+    <Compile Include="Models\areaadmin.cs" />
+    <Compile Include="Models\attcalclog.cs" />
+    <Compile Include="Models\attexception.cs" />
+    <Compile Include="Models\AttParam.cs" />
+    <Compile Include="Models\att_attreport.cs" />
+    <Compile Include="Models\att_waitforprocessdata.cs" />
+    <Compile Include="Models\AuditedExc.cs" />
+    <Compile Include="Models\AUTHDEVICE.cs" />
+    <Compile Include="Models\auth_group.cs" />
+    <Compile Include="Models\auth_group_permissions.cs" />
+    <Compile Include="Models\auth_message.cs" />
+    <Compile Include="Models\auth_permission.cs" />
+    <Compile Include="Models\auth_user.cs" />
+    <Compile Include="Models\auth_user_groups.cs" />
+    <Compile Include="Models\auth_user_user_permissions.cs" />
+    <Compile Include="Models\base_additiondata.cs" />
+    <Compile Include="Models\base_appoption.cs" />
+    <Compile Include="Models\base_basecode.cs" />
+    <Compile Include="Models\base_datatranslation.cs" />
+    <Compile Include="Models\base_operatortemplate.cs" />
+    <Compile Include="Models\base_option.cs" />
+    <Compile Include="Models\base_personaloption.cs" />
+    <Compile Include="Models\base_strresource.cs" />
+    <Compile Include="Models\base_strtranslation.cs" />
+    <Compile Include="Models\base_systemoption.cs" />
+    <Compile Include="Models\CHECKEXACT.cs" />
+    <Compile Include="Models\CHECKINOUT.cs" />
+    <Compile Include="Models\CustomReport.cs" />
+    <Compile Include="Models\dbapp_viewmodel.cs" />
+    <Compile Include="Models\dbbackuplog.cs" />
+    <Compile Include="Models\DEPARTMENTS.cs" />
+    <Compile Include="Models\deptadmin.cs" />
+    <Compile Include="Models\DeptUsedSchs.cs" />
+    <Compile Include="Models\devcmds.cs" />
+    <Compile Include="Models\devcmds_bak.cs" />
+    <Compile Include="Models\devlog.cs" />
+    <Compile Include="Models\django_content_type.cs" />
+    <Compile Include="Models\django_session.cs" />
+    <Compile Include="Models\EmOpLog.cs" />
+    <Compile Include="Models\empitemdefine.cs" />
+    <Compile Include="Models\FaceTemp.cs" />
+    <Compile Include="Models\FingerVein.cs" />
+    <Compile Include="Models\HOLIDAYS.cs" />
+    <Compile Include="Models\iclock_dstime.cs" />
+    <Compile Include="Models\iclock_oplog.cs" />
+    <Compile Include="Models\iclock_testdata.cs" />
+    <Compile Include="Models\iclock_testdata_admin_area.cs" />
+    <Compile Include="Models\iclock_testdata_admin_dept.cs" />
+    <Compile Include="Models\LeaveClass.cs" />
+    <Compile Include="Models\LeaveClass1.cs" />
+    <Compile Include="Models\LossCard.cs" />
+    <Compile Include="Models\Machines.cs" />
+    <Compile Include="data\Model1.cs" />
+    <Compile Include="Models\NUM_RUN.cs" />
+    <Compile Include="Models\NUM_RUN_DEIL.cs" />
+    <Compile Include="Models\OfflinePermitDoors.cs" />
+    <Compile Include="Models\OfflinePermitGroups.cs" />
+    <Compile Include="Models\OfflinePermitUsers.cs" />
+    <Compile Include="Models\operatecmds.cs" />
+    <Compile Include="Models\ParamSet.cs" />
+    <Compile Include="Models\personnel_area.cs" />
+    <Compile Include="Models\personnel_cardtype.cs" />
+    <Compile Include="Models\personnel_empchange.cs" />
+    <Compile Include="Models\personnel_issuecard.cs" />
+    <Compile Include="Models\personnel_leavelog.cs" />
+    <Compile Include="Models\ReportField.cs" />
+    <Compile Include="Models\ReportItem.cs" />
+    <Compile Include="Models\SchClass.cs" />
+    <Compile Include="Models\SECURITYDETAILS.cs" />
+    <Compile Include="Models\ServerLog.cs" />
+    <Compile Include="Models\SHIFT.cs" />
+    <Compile Include="Models\STD_WiegandFmt.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\SystemLog.cs" />
+    <Compile Include="Models\TBSMSALLOT.cs" />
+    <Compile Include="Models\TBSMSINFO.cs" />
+    <Compile Include="Models\TEMPLATE.cs" />
+    <Compile Include="Models\TmpPermitDoors.cs" />
+    <Compile Include="Models\TmpPermitGroups.cs" />
+    <Compile Include="Models\TmpPermitUsers.cs" />
+    <Compile Include="Models\UserACMachines.cs" />
+    <Compile Include="Models\UserACPrivilege.cs" />
+    <Compile Include="Models\USERINFO.cs" />
+    <Compile Include="Models\userinfo_attarea.cs" />
+    <Compile Include="Models\UsersMachines.cs" />
+    <Compile Include="Models\UserUpdates.cs" />
+    <Compile Include="Models\UserUsedSClasses.cs" />
+    <Compile Include="Models\USER_OF_RUN.cs" />
+    <Compile Include="Models\USER_SPEDAY.cs" />
+    <Compile Include="Models\USER_TEMP_SCH.cs" />
+    <Compile Include="Models\worktable_groupmsg.cs" />
+    <Compile Include="Models\worktable_instantmsg.cs" />
+    <Compile Include="Models\worktable_msgtype.cs" />
+    <Compile Include="Models\worktable_usrmsg.cs" />
+    <Compile Include="Models\ZKAttendanceMonthStatistics.cs" />
+    <Compile Include="Models\Zk_Autorizaciones.cs" />
+    <Compile Include="Models\Zk_Correlativos.cs" />
+    <Compile Include="Models\Zk_FormaPago.cs" />
+    <Compile Include="Models\Zk_Genero.cs" />
+    <Compile Include="Models\Zk_Membresias.cs" />
+    <Compile Include="Models\Zk_MembresiasxSocio.cs" />
+    <Compile Include="Models\Zk_PagosSocios.cs" />
+    <Compile Include="Models\Zk_Periodos.cs" />
+    <Compile Include="Models\Zk_TipodePago.cs" />
+    <Compile Include="Models\Zk_Turno.cs" />
+    <Compile Include="Models\Zk_Usuario.cs" />
+    <Compile Include="Models\Zk_Validaciones.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMembresias.resx">
+      <DependentUpon>FrmMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMigraSanAndres.resx">
+      <DependentUpon>FrmMigraSanAndres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPeriodos.resx">
+      <DependentUpon>FrmPeriodos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRelacionPagos.resx">
+      <DependentUpon>FrmRelacionPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSocios.resx">
+      <DependentUpon>FrmSocios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIPrincipal.resx">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxZKFPEngXControl">
+      <Guid>{D95CB779-00CB-4B49-97B9-9F0B61CAB3C1}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="ZKFPEngXControl">
+      <Guid>{D95CB779-00CB-4B49-97B9-9F0B61CAB3C1}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\PostSharp.6.1.15\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.1.15\build\PostSharp.props'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.6.1.15\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.1.15\build\PostSharp.targets'))" />
+  </Target>
+  <Import Project="..\packages\PostSharp.6.1.15\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.6.1.15\build\PostSharp.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
