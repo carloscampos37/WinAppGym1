@@ -14,12 +14,13 @@ using System.Collections;
 using System.Net;
 using System.Web;
 using System.Collections.Generic;
+using Class;
 using Clases;
 
 
-namespace Clases
+namespace Class
 {
-    public class ClsFuncNet
+    public class ClsFunc
     {
         #region Variables
 
@@ -33,10 +34,10 @@ namespace Clases
         {
             xcombo.Items.Clear();
             DataTable Dtx;
-            Dtx = ClsFuncGym.ConsultarTabla(ncadena, ClsFuncGym.VGCnxSql);
+            Dtx = ClsFunc.ConsultarTabla(ncadena, ClsInterface.VgCnxSql);
             if (Dtx.Rows.Count > 0)
             {
-                int loopTo = xcombo.Items.Count - 1;
+                int loopTo = Dtx.Rows.Count - 1;
                 for (int j = 0; j <= loopTo; j++)
                 {
                     xcombo.Items.Add(Dtx.Rows[j][0] + "-" + Dtx.Rows[j][1]);
@@ -56,7 +57,7 @@ namespace Clases
                 vNp = xcombo.Text.IndexOf("-");
                 if (vNp > 0)
                 {
-                    xbusca = ClsFuncNet.Izquierda(xcombo.Text, vNp);
+                    xbusca = ClsFunc.Izquierda(xcombo.Text, vNp);
                 }
                 else
                 {
@@ -202,8 +203,9 @@ namespace Clases
         public static object EsNulo(object EXPRESION, object valor)
         {
             object functionReturnValue = null;
+            object Dato = EXPRESION;
 
-            if (Convert.ToString(EXPRESION) == null)
+            if (Dato == null)
             {
                 functionReturnValue = valor;
             }
@@ -211,7 +213,7 @@ namespace Clases
             {
                 functionReturnValue = EXPRESION;
             }
-            functionReturnValue = valor;
+      
             return functionReturnValue;
         }
 
@@ -245,7 +247,7 @@ namespace Clases
             return loNuevoDataTable;
         }
 
-        public DataTable ConsultarTabla(string vSQL, string vCadConex, int vCommandTimeOut = 800)
+        public static DataTable ConsultarTabla(string vSQL, string vCadConex, int vCommandTimeOut = 800)
         {
             string cError = "";
             try
@@ -265,8 +267,7 @@ namespace Clases
                 return null;
             }
         }
-
-        public bool GrabarTabla(string vSQL, string vCadConex)
+        public static bool GrabarTabla(string vSQL, string vCadConex)
         {
             string cError = "";
             try
@@ -315,7 +316,7 @@ namespace Clases
         }
 
         #region Imagenes
-        public static Image byteArrayToImage(byte[] byteArrayIn)
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
         {
             try
             {
@@ -338,7 +339,7 @@ namespace Clases
                 return ms.ToArray();
             }
         }
-        public Image stringToImage(string inputString)
+        public Image StringToImage(string inputString)
         {
             byte[] imageBytes = Encoding.Unicode.GetBytes(inputString);
 

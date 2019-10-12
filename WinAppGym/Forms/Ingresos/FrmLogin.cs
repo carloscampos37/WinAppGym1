@@ -1,28 +1,43 @@
-﻿using System;
+﻿using Clases;
+using Class;
+using Microsoft.VisualBasic;
+using System;
 using System.Data;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Clases;
 
+namespace WinAppGym
 
-namespace WinAppGym.Forms
 {
     public partial class FrmLogin : Form
     {
-  
-        private int clave;
+
+        #region Public Fields
+
         public string VgCnxSql;
-        string espacio = "";
+
+        #endregion Public Fields
+
+        #region Private Fields
+
+        private int clave;
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public FrmLogin()
         {
             InitializeComponent();
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
         public void LlenarListaEmpresas()
         {
             DataTable REG1;
             string espacio = "";
-            REG1 = ClsFuncGym.ConsultarTabla("Select * from co_multiempresas where empresacodigo<>'00'", ClsFuncGym.VGCnxSql);
+            REG1 = ClsFunc.ConsultarTabla("Select * from co_multiempresas where empresacodigo<>'00'", ClsInterface.VgCnxSql);
             CmbEmpresas.Items.Clear();
             var loopTo = REG1.Rows.Count - 1;
             for (int I = 0; I <= loopTo; I++)
@@ -30,11 +45,15 @@ namespace WinAppGym.Forms
             CmbEmpresas.SelectedIndex = 0;
         }
 
-        private void frmlogin_Load(object sender, EventArgs e)
+        #endregion Public Methods
+
+
+        #region Private Methods
+
+        private void FrmLogin_Load(object sender, EventArgs e)
         {
             try
             {
-
                 if (CmbGrupo.Items.Count > 0)
                     CmbGrupo.SelectedIndex = 0;
                 clave = 1;
@@ -74,13 +93,15 @@ namespace WinAppGym.Forms
             if (clave < 4)
             {
                 int VGTipo = 1;
-                // Clsmenu.CrearTablaMenu(MDIContab)
-                ClsMenuNet.OpcionesMenuWin(VgCnxSql, VGTipo, ClsFuncGym.VGUsuarioCodigo, ref MDIPrincipal);
+                //     ClsMenu.CrearTablaMenu(MDIPrincipal1)
+     //           ClsMenu.OpcionesMenuWin(VgCnxSql, VGTipo, ClsFuncGym.VGUsuarioCodigo, ref MDIPrincipal1);
 
-                ClsMenuNet.FormPorNombre("MDIPrincipal",espacio);
+                //     ClsMenu.FormPorNombre("MDIPrincipal",espacio);
                 this.Close();
             }
         }
+
+        #endregion Private Methods
 
     }
 }

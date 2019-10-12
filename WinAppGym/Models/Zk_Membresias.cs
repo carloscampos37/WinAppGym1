@@ -23,7 +23,7 @@ namespace WinAppGym.Models
 
         public bool? Ilimitado { get; set; }
 
-        public decimal? Precio { get; set; }
+        public int? Precio { get; set; }
 
         public bool? EstadoAnulado { get; set; }
 

@@ -16,6 +16,8 @@ namespace WinAppGym.Models
 
         public int ID { get; set; }
 
+        public DateTime? FechaDocumento { get; set; }
+
         public int UserInfoID { get; set; }
 
         public int MembresiasID { get; set; }
@@ -24,11 +26,11 @@ namespace WinAppGym.Models
 
         public DateTime? FechaFinal { get; set; }
 
-        public decimal? Precio { get; set; }
+        public int? Precio { get; set; }
 
-        public decimal? descuento { get; set; }
+        public int? descuento { get; set; }
 
-        public decimal? PrecioPactado { get; set; }
+        public int? PrecioPactado { get; set; }
 
         public DateTime? fechaMaximadePago { get; set; }
 
@@ -38,15 +40,24 @@ namespace WinAppGym.Models
 
         public bool? EstadoAnulado { get; set; }
 
-        public bool? Activacion { get; set; }
-
         public int? AutorizacionesID { get; set; }
 
-        public decimal? Saldo { get; set; }
+        public int? Saldo { get; set; }
 
         public int? NroCuota { get; set; }
 
         public DateTime? FechaAct { get; set; }
+
+        public DateTime? FechaAnulacion { get; set; }
+
+        public DateTime? FechaModificacion { get; set; }
+
+        [StringLength(60)]
+        public string Referencia { get; set; }
+
+        public int CorrelativoGrupo { get; set; }
+
+        public virtual USERINFO USERINFO { get; set; }
 
         public virtual Zk_Autorizaciones Zk_Autorizaciones { get; set; }
 

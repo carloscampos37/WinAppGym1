@@ -15,7 +15,7 @@ using AForge.Video.DirectShow;
 using AppGym.Models;
 using System.Linq;
 using libzkfpcsharp;
-
+using Class;
 
 namespace AppGym
 {
@@ -37,8 +37,7 @@ namespace AppGym
 
         private VideoCaptureDevice FinalFrame;
 
-       private  ModFuncNet FuncNet = new ModFuncNet();
-
+ 
         private int fila1;
         private byte[] imagen;
         private Int32 vUserId;
@@ -228,7 +227,7 @@ namespace AppGym
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
       
-                if (FuncNet.EsNumero(TxtBuscar.Text, 0))
+                if (ClsFunc.EsNumero(TxtBuscar.Text, 0))
                 {
                     using (Model1 bd = new Model1())
                     {
@@ -280,7 +279,7 @@ namespace AppGym
             BntGrabar.Visible = true;
             DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
             imagen = (byte[])cell.Value;
-            PicDetalle.Image = FuncNet.byteArrayToImage(imagen);
+            PicDetalle.Image = ClsFunc.byteArrayToImage(imagen);
             vUserId = Convert.ToInt32(DgvSocios.CurrentRow.Cells["Id"].Value);
 
             ObtenerHuellas();
@@ -524,7 +523,7 @@ namespace AppGym
                 }
                 else
                 {
-                    user.PHOTO = FuncNet.ImageTobyteArray(PicDetalle.Image);
+                    user.PHOTO = ClsFunc.ImageTobyteArray(PicDetalle.Image);
                 }
                bd.SaveChanges();
             }

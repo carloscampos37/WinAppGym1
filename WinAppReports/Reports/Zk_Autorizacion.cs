@@ -16,14 +16,14 @@ namespace WinAppReports.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Zk_Autorizaciones : ReportClass {
+    public class Zk_Autorizacion : ReportClass {
         
-        public Zk_Autorizaciones() {
+        public Zk_Autorizacion() {
         }
         
         public override string ResourceName {
             get {
-                return "Zk_Autorizaciones.rpt";
+                return "Zk_Autorizacion.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace WinAppReports.Reports {
         
         public override string FullResourceName {
             get {
-                return "WinAppReports.Reports.Zk_Autorizaciones.rpt";
+                return "WinAppReports.Reports.Zk_Autorizacion.rpt";
             }
             set {
                 // Do nothing
@@ -90,7 +90,7 @@ namespace WinAppReports.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Base {
+        public CrystalDecisions.Shared.IParameterField Parameter_base {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,49 +98,17 @@ namespace WinAppReports.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Desde {
+        public CrystalDecisions.Shared.IParameterField Parameter_ID {
             get {
                 return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Hasta {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Turno {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_FormaPago {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_MembSocioId {
-            get {
-                return this.DataDefinition.ParameterFields[5];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedZk_Autorizaciones : Component, ICachedReport {
+    public class CachedZk_Autorizacion : Component, ICachedReport {
         
-        public CachedZk_Autorizaciones() {
+        public CachedZk_Autorizacion() {
         }
         
         [Browsable(false)]
@@ -177,7 +145,7 @@ namespace WinAppReports.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Zk_Autorizaciones rpt = new Zk_Autorizaciones();
+            Zk_Autorizacion rpt = new Zk_Autorizacion();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -60,6 +60,7 @@
             this.TxtBuscar.Size = new System.Drawing.Size(153, 20);
             this.TxtBuscar.TabIndex = 18;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
+            this.TxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuscar_KeyPress);
             // 
             // pictFoto
             // 

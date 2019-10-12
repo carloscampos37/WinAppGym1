@@ -426,6 +426,12 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinAppGym\WinAppGym.csproj">
+      <Project>{3A99B8B4-6976-407D-B37D-4B3C8C868A4A}</Project>
+      <Name>WinAppGym</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,4 +1,4 @@
-﻿namespace WinAppGym.Forms
+﻿namespace WinAppGym
 {
     partial class FrmLogin
     {
@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.TextBox1 = new System.Windows.Forms.TextBox();
             this.DTPfecha1 = new System.Windows.Forms.DateTimePicker();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -48,6 +46,8 @@
             this._Label1_3 = new System.Windows.Forms.Label();
             this._lblLabels_1 = new System.Windows.Forms.Label();
             this.Frame1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.Frame1.SuspendLayout();
             this.SuspendLayout();
@@ -65,35 +65,10 @@
             this.ToolStripButton1.Size = new System.Drawing.Size(120, 50);
             this.ToolStripButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // Label1
-            // 
-            this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.ForeColor = System.Drawing.Color.Red;
-            this.Label1.Location = new System.Drawing.Point(36, 13);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(417, 24);
-            this.Label1.TabIndex = 23;
-            this.Label1.Text = "SISTEMA DE FACTURAS ELECTRONICAS ";
-            // 
-            // TextBox1
-            // 
-            this.TextBox1.BackColor = System.Drawing.Color.Navy;
-            this.TextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox1.ForeColor = System.Drawing.Color.Yellow;
-            this.TextBox1.Location = new System.Drawing.Point(0, 277);
-            this.TextBox1.Multiline = true;
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.Size = new System.Drawing.Size(462, 37);
-            this.TextBox1.TabIndex = 21;
-            this.TextBox1.Text = "JCK Consultores -  RPC993900810/ RPM #974989647/ ENTEL 954818107    Correo: carlo" +
-    "s.campos.si@hotmail.com";
-            this.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // DTPfecha1
             // 
             this.DTPfecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPfecha1.Location = new System.Drawing.Point(109, 245);
+            this.DTPfecha1.Location = new System.Drawing.Point(109, 281);
             this.DTPfecha1.Name = "DTPfecha1";
             this.DTPfecha1.Size = new System.Drawing.Size(136, 20);
             this.DTPfecha1.TabIndex = 20;
@@ -106,7 +81,7 @@
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtUserName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtUserName.Location = new System.Drawing.Point(109, 124);
+            this.txtUserName.Location = new System.Drawing.Point(109, 160);
             this.txtUserName.MaxLength = 8;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -121,7 +96,7 @@
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtPassword.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtPassword.Location = new System.Drawing.Point(109, 163);
+            this.txtPassword.Location = new System.Drawing.Point(109, 199);
             this.txtPassword.MaxLength = 0;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -134,8 +109,8 @@
             this.CmbGrupo.BackColor = System.Drawing.SystemColors.Window;
             this.CmbGrupo.Cursor = System.Windows.Forms.Cursors.Default;
             this.CmbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbGrupo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.CmbGrupo.Location = new System.Drawing.Point(110, 51);
+            this.CmbGrupo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.CmbGrupo.Location = new System.Drawing.Point(110, 87);
             this.CmbGrupo.Name = "CmbGrupo";
             this.CmbGrupo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CmbGrupo.Size = new System.Drawing.Size(179, 21);
@@ -147,7 +122,7 @@
             this.CmbEmpresas.Cursor = System.Windows.Forms.Cursors.Default;
             this.CmbEmpresas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbEmpresas.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.CmbEmpresas.Location = new System.Drawing.Point(109, 90);
+            this.CmbEmpresas.Location = new System.Drawing.Point(109, 126);
             this.CmbEmpresas.Name = "CmbEmpresas";
             this.CmbEmpresas.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CmbEmpresas.Size = new System.Drawing.Size(180, 21);
@@ -160,7 +135,7 @@
             this.Combo4.Cursor = System.Windows.Forms.Cursors.Default;
             this.Combo4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Combo4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.Combo4.Location = new System.Drawing.Point(109, 201);
+            this.Combo4.Location = new System.Drawing.Point(109, 237);
             this.Combo4.Name = "Combo4";
             this.Combo4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Combo4.Size = new System.Drawing.Size(180, 21);
@@ -169,14 +144,14 @@
             // ToolStrip1
             // 
             this.ToolStrip1.AutoSize = false;
-            this.ToolStrip1.BackColor = System.Drawing.Color.PeachPuff;
+            this.ToolStrip1.BackColor = System.Drawing.Color.Gold;
             this.ToolStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TsbAceptar,
             this.ToolStripButton1});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(473, 41);
+            this.ToolStrip1.Size = new System.Drawing.Size(635, 41);
             this.ToolStrip1.TabIndex = 29;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -199,7 +174,7 @@
             this._lblLabels_0.BackColor = System.Drawing.Color.Transparent;
             this._lblLabels_0.Cursor = System.Windows.Forms.Cursors.Default;
             this._lblLabels_0.ForeColor = System.Drawing.Color.Maroon;
-            this._lblLabels_0.Location = new System.Drawing.Point(26, 131);
+            this._lblLabels_0.Location = new System.Drawing.Point(26, 167);
             this._lblLabels_0.Name = "_lblLabels_0";
             this._lblLabels_0.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._lblLabels_0.Size = new System.Drawing.Size(49, 13);
@@ -225,7 +200,7 @@
             this._Label4_0.BackColor = System.Drawing.Color.Transparent;
             this._Label4_0.Cursor = System.Windows.Forms.Cursors.Default;
             this._Label4_0.ForeColor = System.Drawing.Color.Maroon;
-            this._Label4_0.Location = new System.Drawing.Point(36, 53);
+            this._Label4_0.Location = new System.Drawing.Point(36, 87);
             this._Label4_0.Name = "_Label4_0";
             this._Label4_0.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._Label4_0.Size = new System.Drawing.Size(42, 13);
@@ -238,7 +213,7 @@
             this._Label4_1.BackColor = System.Drawing.Color.Transparent;
             this._Label4_1.Cursor = System.Windows.Forms.Cursors.Default;
             this._Label4_1.ForeColor = System.Drawing.Color.Maroon;
-            this._Label4_1.Location = new System.Drawing.Point(35, 252);
+            this._Label4_1.Location = new System.Drawing.Point(35, 288);
             this._Label4_1.Name = "_Label4_1";
             this._Label4_1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._Label4_1.Size = new System.Drawing.Size(43, 13);
@@ -251,7 +226,7 @@
             this.Lbempresa.BackColor = System.Drawing.Color.Transparent;
             this.Lbempresa.Cursor = System.Windows.Forms.Cursors.Default;
             this.Lbempresa.ForeColor = System.Drawing.Color.Maroon;
-            this.Lbempresa.Location = new System.Drawing.Point(35, 93);
+            this.Lbempresa.Location = new System.Drawing.Point(35, 129);
             this.Lbempresa.Name = "Lbempresa";
             this.Lbempresa.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Lbempresa.Size = new System.Drawing.Size(54, 13);
@@ -264,7 +239,7 @@
             this._Label1_3.BackColor = System.Drawing.Color.Transparent;
             this._Label1_3.Cursor = System.Windows.Forms.Cursors.Default;
             this._Label1_3.ForeColor = System.Drawing.Color.Maroon;
-            this._Label1_3.Location = new System.Drawing.Point(35, 204);
+            this._Label1_3.Location = new System.Drawing.Point(35, 240);
             this._Label1_3.Name = "_Label1_3";
             this._Label1_3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._Label1_3.Size = new System.Drawing.Size(74, 13);
@@ -277,7 +252,7 @@
             this._lblLabels_1.BackColor = System.Drawing.Color.Transparent;
             this._lblLabels_1.Cursor = System.Windows.Forms.Cursors.Default;
             this._lblLabels_1.ForeColor = System.Drawing.Color.Maroon;
-            this._lblLabels_1.Location = new System.Drawing.Point(35, 167);
+            this._lblLabels_1.Location = new System.Drawing.Point(35, 203);
             this._lblLabels_1.Name = "_lblLabels_1";
             this._lblLabels_1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._lblLabels_1.Size = new System.Drawing.Size(64, 13);
@@ -286,9 +261,11 @@
             // 
             // Frame1
             // 
+            this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Frame1.BackColor = System.Drawing.Color.White;
-            this.Frame1.Controls.Add(this.Label1);
-            this.Frame1.Controls.Add(this.TextBox1);
+            this.Frame1.Controls.Add(this.textBox1);
+            this.Frame1.Controls.Add(this.textBox3);
             this.Frame1.Controls.Add(this.DTPfecha1);
             this.Frame1.Controls.Add(this.txtUserName);
             this.Frame1.Controls.Add(this.txtPassword);
@@ -303,23 +280,54 @@
             this.Frame1.Controls.Add(this.Lbempresa);
             this.Frame1.Controls.Add(this._Label1_3);
             this.Frame1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Frame1.Location = new System.Drawing.Point(0, 89);
+            this.Frame1.Location = new System.Drawing.Point(279, 44);
             this.Frame1.Name = "Frame1";
             this.Frame1.Padding = new System.Windows.Forms.Padding(0);
             this.Frame1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Frame1.Size = new System.Drawing.Size(465, 317);
+            this.Frame1.Size = new System.Drawing.Size(344, 356);
             this.Frame1.TabIndex = 28;
             this.Frame1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(9, 16);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(332, 46);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "SISTEMA DE FACTURACION ELECTRONICA";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.ForeColor = System.Drawing.Color.White;
+            this.textBox3.Location = new System.Drawing.Point(3, 310);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(338, 36);
+            this.textBox3.TabIndex = 23;
+            this.textBox3.Text = "JCK Consultores -  RPC 936859876  /  RPM #974989647                   Correo: car" +
+    "los.campos.si@hotmail.com";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 413);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(635, 402);
             this.Controls.Add(this.ToolStrip1);
             this.Controls.Add(this.Frame1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogin";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
             this.Frame1.ResumeLayout(false);
@@ -331,8 +339,6 @@
         #endregion
 
         internal System.Windows.Forms.ToolStripButton ToolStripButton1;
-        internal System.Windows.Forms.Label Label1;
-        internal System.Windows.Forms.TextBox TextBox1;
         internal System.Windows.Forms.DateTimePicker DTPfecha1;
         public System.Windows.Forms.TextBox txtUserName;
         public System.Windows.Forms.TextBox txtPassword;
@@ -349,5 +355,7 @@
         public System.Windows.Forms.Label _Label1_3;
         public System.Windows.Forms.Label _lblLabels_1;
         public System.Windows.Forms.GroupBox Frame1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

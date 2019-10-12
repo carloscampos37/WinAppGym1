@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Clases;
+using Class;
+using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinAppGym.Models;
-using Clases;
 
 namespace WinAppGym.Forms
 {
@@ -16,7 +12,7 @@ namespace WinAppGym.Forms
     {
         private int vUserId;
         private bool vAdiciona;
- 
+
         public FrmMembresias()
         {
             InitializeComponent();
@@ -24,7 +20,7 @@ namespace WinAppGym.Forms
 
         private void FrmMembresias_Load(object sender, EventArgs e)
         {
-            ctr_AyuPeriodos.CadenaCone = ClsFuncGym.VGCnxSql;
+            ctr_AyuPeriodos.CadenaCone = ClsInterface.VgCnxSql;
             using (Model1 bd = new Model1())
 
             {
@@ -72,8 +68,8 @@ namespace WinAppGym.Forms
                                  select dd).First();
                 TxtDescripcion.Text = Resultado.DescripcionMembresias;
                 TxtId.Text = Convert.ToString(Resultado.ID);
-                DtpInicio.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.InicioVigencia, "01-01-1900"));
-                Dtptermino.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.TerminoVigencia, "01-01-1900"));
+                DtpInicio.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.InicioVigencia, "01-01-1900"));
+                Dtptermino.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.TerminoVigencia, "01-01-1900"));
                 TxtNroSocios.Text = Convert.ToString(Resultado.CantidaddeSocios);
                 TxtPrecio.Text = Convert.ToString(Resultado.Precio);
                 ChkLimitado.Checked = Convert.ToBoolean(Resultado.Ilimitado);
@@ -83,7 +79,7 @@ namespace WinAppGym.Forms
                 ctr_AyuPeriodos.EjecAyuda();
             }
 
-            ClsFuncNet.ActivaTab(2, 2, ref tabControl1);
+            ClsFunc.ActivaTab(2, 2, ref tabControl1);
 
             vAdiciona = false;
 
@@ -109,7 +105,7 @@ namespace WinAppGym.Forms
             DtpInicio.Value = Convert.ToDateTime("01-01-1900");
             Dtptermino.Value = Convert.ToDateTime("01-01-1900");
             vAdiciona = true;
-            ClsFuncNet.ActivaTab(2, 2, ref tabControl1);
+            ClsFunc.ActivaTab(2, 2, ref tabControl1);
 
             ActivaBotones(false, false, false, true, true, false, false);
         }
@@ -125,7 +121,7 @@ namespace WinAppGym.Forms
                 GrabaModifica();
             }
 
-            ClsFuncNet.ActivaTab(1, 2, ref tabControl1);
+            ClsFunc.ActivaTab(1, 2, ref tabControl1);
 
             ActivaBotones(true, true, true, false, false, true, true);
         }
@@ -143,7 +139,7 @@ namespace WinAppGym.Forms
                 dd.InicioVigencia = Convert.ToDateTime(DtpInicio.Text);
                 dd.TerminoVigencia = Convert.ToDateTime(Dtptermino.Text);
                 dd.PeriodosID = Convert.ToInt32(ctr_AyuPeriodos.Codigo);
-                dd.Precio = Convert.ToDecimal(TxtPrecio.Text);
+                dd.Precio = Convert.ToInt32(TxtPrecio.Text);
 
                 bd.Zk_Membresias.Add(dd);
                 bd.SaveChanges();
@@ -165,7 +161,7 @@ namespace WinAppGym.Forms
                 dd.InicioVigencia = Convert.ToDateTime(DtpInicio.Text);
                 dd.TerminoVigencia = Convert.ToDateTime(Dtptermino.Text);
                 dd.PeriodosID = Convert.ToInt32(ctr_AyuPeriodos.Codigo);
-                dd.Precio = Convert.ToDecimal(TxtPrecio.Text);
+                dd.Precio = Convert.ToInt32(TxtPrecio.Text);
                 bd.SaveChanges();
             }
         }
@@ -183,7 +179,7 @@ namespace WinAppGym.Forms
 
         private void BntCancelar_Click(object sender, EventArgs e)
         {
-            ClsFuncNet.ActivaTab(1, 2, ref tabControl1);
+            ClsFunc.ActivaTab(1, 2, ref tabControl1);
             ActivaBotones(true, true, true, false, false, true, true);
         }
     }

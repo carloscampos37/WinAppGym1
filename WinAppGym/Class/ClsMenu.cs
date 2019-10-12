@@ -4,20 +4,19 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using WinAppGym;
 using Clases;
+using WinAppGym;
 
+namespace Class
 
-namespace Clases
 {
-    public class ClsMenuNet
+    public class ClsMenu
     {
         public MenuStrip mnuMenuUsuario;
         public string TablaUsu;
-        public string SQL;
-        private int VGTipo = 1;
-         public string VgCnxSql=WinAppGym.Properties.Settings.Default.CadenaConexion ;
-        public void OpcionesMenuWin(string vbaseConfig, int vTipo, string vUsusario,ref Form FrmPrincipal)
+        public static string SQL;
+        private static int VGTipo = 1;
+        public static void OpcionesMenuWin(string vbaseConfig, int vTipo, string vUsusario,ref Form FrmPrincipal)
         {
             try
             {
@@ -27,7 +26,7 @@ namespace Clases
                 sSQL.Append(" ON a.tipodesistema=b.tipodesistema AND a.MenuCodigo=b.MENuCODIGO ");
                 sSQL.Append(" WHERE a.tipodesistema=" + vTipo + " AND Isnull(b.usuariocodigo,'" + vUsusario + "') ='" + vUsusario + "' AND a.MenuVisible=1");
 
-                dt = ClsFuncGym.ConsultarTabla(Convert.ToString(sSQL), ClsFuncGym.VGCnxSql);
+                dt = ClsFunc.ConsultarTabla(Convert.ToString(sSQL), ClsInterface.VgCnxSql);
 
                 // instanciar el menú
                 MenuStrip mnuMenuUsuario = new MenuStrip();
@@ -52,7 +51,8 @@ namespace Clases
                         mnuMenuUsuario.Items.Add(xMenuItem);
 
                         // recorrer si hubiera las opciones dependientes de este menú
-                        CrearSubopcionesWin(xMenuItem, dt, ref FrmPrincipal);
+                        CrearSubopcionesWin(xMenuItem, dt, ref WinAppGym.MDIPrincipal);
+
                     }
                 }
 
@@ -66,12 +66,12 @@ namespace Clases
             }
         }
 
-        public void CrearTablaMenu(ref Form Menu, Form FrmPrincipal)
+        public static void CrearTablaMenu(ref Form Menu, Form FrmPrincipal)
         {
             DataTable rsaux = default(DataTable);
            int I = 0;
             //*------------------------------------------------------------------*
-            ClsFuncGym.GrabarTabla("DELETE  From si_menu where tipodesistema=" + 1 + "", ClsFuncGym.VGCnxSql);
+            ClsFunc.GrabarTabla("DELETE  From si_menu where tipodesistema=" + 1 + "", ClsInterface.VgCnxSql);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Clases
                     //           objbe.menuCodEdit = RTrim(xOpcion.Name)
                      //          objbe.MenuNivel = 1
                     SQL = "SELECT * FROM si_menu WHERE tipodesistema=" + 1 + "  AND menucodigo='" + Strings.Format(I, "00") + "'";
-                    rsaux = ClsFuncGym.ConsultarTabla(SQL, ClsFuncGym.VGCnxSql);
+                    rsaux = ClsFunc.ConsultarTabla(SQL, ClsInterface.VgCnxSql);
                     if (rsaux.Rows.Count == 0)
                     {
               //          Objbl.GrabarProc(VGBase, 1, ClsFuncGym.VGCnxSql, objbe);
@@ -109,7 +109,7 @@ namespace Clases
             }
         }
 
-        public void MuestraOpciones(ToolStripItemCollection menu, ref string ii)
+        public static void MuestraOpciones(ToolStripItemCollection menu, ref string ii)
         {
             int iii = 0;
             DataTable rsaux = default(DataTable);
@@ -122,7 +122,7 @@ namespace Clases
                     //            objbe.menuCodEdit = RTrim(item.Name)
                     //             objbe.MenuNivel = Len(ii + Format(iii, "00")) / 2
                     SQL = "SELECT * FROM si_menu WHERE tipodesistema=" + VGTipo + "  AND menucodigo='" + ii + Strings.Format(iii, "00") + "'";
-                    rsaux = ClsFuncGym.ConsultarTabla(SQL,VgCnxSql);
+                    rsaux = ClsFunc.ConsultarTabla(SQL,ClsInterface.VgCnxSql);
                     if (rsaux.Rows.Count == 0)
                     {
        //                 ObjBL.GrabarProc(VGBase, 1, VGCnxSql, objbe);
@@ -148,7 +148,7 @@ namespace Clases
             }
         }
 
-        public static void CrearSubopcionesWin(ToolStripMenuItem mnuOpcion, DataTable dt, ref Form FrmPrincipal)
+        public void CrearSubopcionesWin(ToolStripMenuItem mnuOpcion, DataTable dt, ref Form FrmPrincipal)
         {
             try
             {
@@ -167,8 +167,7 @@ namespace Clases
                     mnuSubOpcion.Name = Convert.ToString(drFila["menucodigo"]);
                     mnuSubOpcion.Text = Convert.ToString(drFila["menudescripcion"]);
                     mnuSubOpcion.Tag = drFila["Menuforms"];
-                    mnuSubOpcion.Click += MDIPrincipal.OpcionMenu;
-
+             
                     mnuOpcion.DropDownItems.Add(mnuSubOpcion);
 
                     // llamar recursivamente a este método
@@ -183,7 +182,7 @@ namespace Clases
             }
         }
 
-        public static Form FormPorNombre(string pNombreForm,string espacio)
+        public static  Form FormPorNombre(string pNombreForm,string espacio)
         {
             try
             {

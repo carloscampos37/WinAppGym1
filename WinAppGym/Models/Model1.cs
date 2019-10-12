@@ -8,7 +8,7 @@ namespace WinAppGym.Models
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model11")
+            : base("name=Model1")
         {
         }
 
@@ -129,6 +129,7 @@ namespace WinAppGym.Models
         public virtual DbSet<worktable_instantmsg> worktable_instantmsg { get; set; }
         public virtual DbSet<worktable_msgtype> worktable_msgtype { get; set; }
         public virtual DbSet<worktable_usrmsg> worktable_usrmsg { get; set; }
+        public virtual DbSet<Zk_Asistencia> Zk_Asistencia { get; set; }
         public virtual DbSet<Zk_Autorizaciones> Zk_Autorizaciones { get; set; }
         public virtual DbSet<Zk_FormaPago> Zk_FormaPago { get; set; }
         public virtual DbSet<Zk_Membresias> Zk_Membresias { get; set; }
@@ -280,6 +281,18 @@ namespace WinAppGym.Models
                 .Property(e => e.YUANYING)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<USERINFO>()
+                .HasMany(e => e.Zk_Asistencia)
+                .WithOptional(e => e.USERINFO)
+                .HasForeignKey(e => e.UserInfoID)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<USERINFO>()
+                .HasMany(e => e.Zk_MembresiasxSocio)
+                .WithRequired(e => e.USERINFO)
+                .HasForeignKey(e => e.UserInfoID)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<UserUpdates>()
                 .Property(e => e.BadgeNumber)
                 .IsUnicode(false);
@@ -303,40 +316,20 @@ namespace WinAppGym.Models
                 .HasForeignKey(e => e.FormaPagoID);
 
             modelBuilder.Entity<Zk_Membresias>()
-                .Property(e => e.Precio)
-                .HasPrecision(12, 2);
-
-            modelBuilder.Entity<Zk_Membresias>()
                 .HasMany(e => e.Zk_MembresiasxSocio)
                 .WithRequired(e => e.Zk_Membresias)
                 .HasForeignKey(e => e.MembresiasID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Zk_MembresiasxSocio>()
-                .Property(e => e.Precio)
-                .HasPrecision(12, 2);
-
-            modelBuilder.Entity<Zk_MembresiasxSocio>()
-                .Property(e => e.descuento)
-                .HasPrecision(12, 2);
-
-            modelBuilder.Entity<Zk_MembresiasxSocio>()
-                .Property(e => e.PrecioPactado)
-                .HasPrecision(12, 2);
-
-            modelBuilder.Entity<Zk_MembresiasxSocio>()
-                .Property(e => e.Saldo)
-                .HasPrecision(12, 0);
+                .Property(e => e.Referencia)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Zk_MembresiasxSocio>()
                 .HasMany(e => e.Zk_PagosSocios)
                 .WithOptional(e => e.Zk_MembresiasxSocio)
                 .HasForeignKey(e => e.MembresiasxSocioID)
                 .WillCascadeOnDelete();
-
-            modelBuilder.Entity<Zk_PagosSocios>()
-                .Property(e => e.ImportePagado)
-                .HasPrecision(12, 2);
 
             modelBuilder.Entity<Zk_PagosSocios>()
                 .Property(e => e.Referencia)

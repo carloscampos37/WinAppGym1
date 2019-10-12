@@ -30,6 +30,16 @@
         {
             this.TabSocios = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DgvMembresias = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictFoto = new System.Windows.Forms.PictureBox();
             this.DgvSocios = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CmbGenero = new System.Windows.Forms.ComboBox();
             this.ChkHuellas = new System.Windows.Forms.CheckBox();
             this.PnlHuellas = new System.Windows.Forms.Panel();
             this.BntActivar = new System.Windows.Forms.Button();
@@ -104,6 +115,16 @@
             this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvMembPersonal = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictPersonal = new System.Windows.Forms.PictureBox();
             this.PnlACuenta = new System.Windows.Forms.Panel();
             this.DtpMaxPagoMp = new System.Windows.Forms.DateTimePicker();
@@ -167,6 +188,15 @@
             this.ctr_AyuSocios = new Ctr_Ayuda.Ctr_Ayuda();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.DgvPagosMembresias = new System.Windows.Forms.DataGridView();
+            this.PagosID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdSocios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionMembPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaMaximaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioPactado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroCuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TxtNroCuota = new System.Windows.Forms.TextBox();
             this.TxtSaldo = new System.Windows.Forms.TextBox();
@@ -192,38 +222,12 @@
             this.BntModificar = new System.Windows.Forms.Button();
             this.BntAdicionar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.PagosID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdSocios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionMembPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaMaximaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioPactado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NroCuota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgvMembresias = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMembPersonal = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CmbGenero = new System.Windows.Forms.ComboBox();
+            this.ChkAsistencia = new System.Windows.Forms.CheckBox();
+            this.DgvAsistencia = new System.Windows.Forms.DataGridView();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabSocios.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSocios)).BeginInit();
             this.panel1.SuspendLayout();
@@ -234,6 +238,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicDetalle)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictPersonal)).BeginInit();
             this.PnlACuenta.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -247,8 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicPagos)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAsistencia)).BeginInit();
             this.SuspendLayout();
             // 
             // TabSocios
@@ -263,11 +267,13 @@
             this.TabSocios.Location = new System.Drawing.Point(9, 12);
             this.TabSocios.Name = "TabSocios";
             this.TabSocios.SelectedIndex = 0;
-            this.TabSocios.Size = new System.Drawing.Size(940, 538);
+            this.TabSocios.Size = new System.Drawing.Size(1138, 538);
             this.TabSocios.TabIndex = 9;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.DgvAsistencia);
+            this.tabPage1.Controls.Add(this.ChkAsistencia);
             this.tabPage1.Controls.Add(this.DgvMembresias);
             this.tabPage1.Controls.Add(this.pictFoto);
             this.tabPage1.Controls.Add(this.DgvSocios);
@@ -275,18 +281,119 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabPage1.Size = new System.Drawing.Size(932, 512);
+            this.tabPage1.Size = new System.Drawing.Size(1130, 512);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "SOCIOS";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // DgvMembresias
+            // 
+            this.DgvMembresias.AllowUserToAddRows = false;
+            this.DgvMembresias.AllowUserToDeleteRows = false;
+            this.DgvMembresias.AllowUserToOrderColumns = true;
+            this.DgvMembresias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvMembresias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12});
+            this.DgvMembresias.Location = new System.Drawing.Point(19, 60);
+            this.DgvMembresias.Name = "DgvMembresias";
+            this.DgvMembresias.ReadOnly = true;
+            this.DgvMembresias.Size = new System.Drawing.Size(662, 132);
+            this.DgvMembresias.TabIndex = 129;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 43;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "UserInfoID";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Socio";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 59;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "DescripcionMembresias";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Membresia";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 83;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "FechaInicio";
+            this.dataGridViewTextBoxColumn7.HeaderText = "F. Inicio";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 64;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "FechaFinal";
+            this.dataGridViewTextBoxColumn8.HeaderText = "F. Termino";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 76;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "fechaMaximadePago";
+            this.dataGridViewTextBoxColumn9.HeaderText = "F. Maxima Pago";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 99;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "PrecioPactado";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Precio";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 62;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "NroCuota";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Nro Cuota";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 74;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "saldo";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Saldo";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 59;
+            // 
             // pictFoto
             // 
-            this.pictFoto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictFoto.Location = new System.Drawing.Point(690, 3);
             this.pictFoto.Name = "pictFoto";
-            this.pictFoto.Size = new System.Drawing.Size(218, 189);
+            this.pictFoto.Size = new System.Drawing.Size(227, 189);
             this.pictFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictFoto.TabIndex = 18;
             this.pictFoto.TabStop = false;
@@ -296,8 +403,6 @@
             this.DgvSocios.AllowUserToAddRows = false;
             this.DgvSocios.AllowUserToDeleteRows = false;
             this.DgvSocios.AllowUserToOrderColumns = true;
-            this.DgvSocios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvSocios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvSocios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
@@ -311,7 +416,7 @@
             this.DgvSocios.Location = new System.Drawing.Point(19, 205);
             this.DgvSocios.Name = "DgvSocios";
             this.DgvSocios.ReadOnly = true;
-            this.DgvSocios.Size = new System.Drawing.Size(889, 307);
+            this.DgvSocios.Size = new System.Drawing.Size(898, 307);
             this.DgvSocios.TabIndex = 1;
             this.DgvSocios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSocios_CellContentClick);
             // 
@@ -461,10 +566,18 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(932, 512);
+            this.tabPage2.Size = new System.Drawing.Size(1130, 512);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DETALLE";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CmbGenero
+            // 
+            this.CmbGenero.FormattingEnabled = true;
+            this.CmbGenero.Location = new System.Drawing.Point(438, 72);
+            this.CmbGenero.Name = "CmbGenero";
+            this.CmbGenero.Size = new System.Drawing.Size(105, 21);
+            this.CmbGenero.TabIndex = 99;
             // 
             // ChkHuellas
             // 
@@ -1089,15 +1202,120 @@
             this.tabPage3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(932, 512);
+            this.tabPage3.Size = new System.Drawing.Size(994, 512);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MEMBRESIAS PERSONALES";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // dgvMembPersonal
+            // 
+            this.dgvMembPersonal.AllowUserToAddRows = false;
+            this.dgvMembPersonal.AllowUserToDeleteRows = false;
+            this.dgvMembPersonal.AllowUserToOrderColumns = true;
+            this.dgvMembPersonal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMembPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMembPersonal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewTextBoxColumn18,
+            this.dataGridViewTextBoxColumn19,
+            this.dataGridViewTextBoxColumn20});
+            this.dgvMembPersonal.Location = new System.Drawing.Point(9, 101);
+            this.dgvMembPersonal.Name = "dgvMembPersonal";
+            this.dgvMembPersonal.ReadOnly = true;
+            this.dgvMembPersonal.Size = new System.Drawing.Size(723, 132);
+            this.dgvMembPersonal.TabIndex = 130;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 43;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "UserInfoID";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Socio";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 59;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "DescripcionMembresias";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Membresia";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Width = 83;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "FechaInicio";
+            this.dataGridViewTextBoxColumn15.HeaderText = "F. Inicio";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 64;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "FechaFinal";
+            this.dataGridViewTextBoxColumn16.HeaderText = "F. Termino";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.Width = 76;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "fechaMaximadePago";
+            this.dataGridViewTextBoxColumn17.HeaderText = "F. Maxima Pago";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Width = 99;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "PrecioPactado";
+            this.dataGridViewTextBoxColumn18.HeaderText = "Precio";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            this.dataGridViewTextBoxColumn18.Width = 62;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn19.DataPropertyName = "NroCuota";
+            this.dataGridViewTextBoxColumn19.HeaderText = "Nro Cuota";
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            this.dataGridViewTextBoxColumn19.ReadOnly = true;
+            this.dataGridViewTextBoxColumn19.Width = 74;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn20.DataPropertyName = "saldo";
+            this.dataGridViewTextBoxColumn20.HeaderText = "Saldo";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            this.dataGridViewTextBoxColumn20.Width = 59;
+            // 
             // pictPersonal
             // 
             this.pictPersonal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictPersonal.Location = new System.Drawing.Point(709, 58);
+            this.pictPersonal.Location = new System.Drawing.Point(771, 58);
             this.pictPersonal.Name = "pictPersonal";
             this.pictPersonal.Size = new System.Drawing.Size(223, 186);
             this.pictPersonal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1429,7 +1647,7 @@
             this.ctr_AyuMembPersonal.Size = new System.Drawing.Size(559, 37);
             this.ctr_AyuMembPersonal.TabIndex = 118;
             this.ctr_AyuMembPersonal.Titulo = null;
-            this.ctr_AyuMembPersonal.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.ctr_AyuMembPersonal_AlDevolverDato);
+            this.ctr_AyuMembPersonal.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.Ctr_AyuMembPersonal_AlDevolverDato);
             // 
             // tabPage4
             // 
@@ -1442,7 +1660,7 @@
             this.tabPage4.Controls.Add(this.ctr_AyuSocios);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(945, 512);
+            this.tabPage4.Size = new System.Drawing.Size(994, 512);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "MEMBRESIAS GRUPO";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1450,7 +1668,7 @@
             // ctr_AyuMembGrupo
             // 
             this.ctr_AyuMembGrupo.CampoDevCod = "Id";
-            this.ctr_AyuMembGrupo.CampoDevDesc = "Descripcion";
+            this.ctr_AyuMembGrupo.CampoDevDesc = "DescripcionMembresias";
             this.ctr_AyuMembGrupo.Codigo = "";
             this.ctr_AyuMembGrupo.Descripcion = "";
             this.ctr_AyuMembGrupo.Filtro = "";
@@ -1465,14 +1683,13 @@
             this.ctr_AyuMembGrupo.Size = new System.Drawing.Size(559, 37);
             this.ctr_AyuMembGrupo.TabIndex = 135;
             this.ctr_AyuMembGrupo.Titulo = null;
-            this.ctr_AyuMembGrupo.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.ctr_AyuMembGrupo_AlDevolverDato);
+            this.ctr_AyuMembGrupo.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.Ctr_AyuMembGrupo_AlDevolverDato);
+            this.ctr_AyuMembGrupo.Load += new System.EventHandler(this.Ctr_AyuMembGrupo_Load);
             // 
             // ChkPagoTotalG
             // 
             this.ChkPagoTotalG.AutoSize = true;
             this.ChkPagoTotalG.CheckAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.ChkPagoTotalG.Checked = true;
-            this.ChkPagoTotalG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChkPagoTotalG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChkPagoTotalG.ForeColor = System.Drawing.Color.Red;
             this.ChkPagoTotalG.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1496,7 +1713,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(840, 49);
             this.panel5.TabIndex = 134;
-            this.panel5.Visible = false;
             // 
             // TxtACuentaMG
             // 
@@ -1504,6 +1720,7 @@
             this.TxtACuentaMG.Name = "TxtACuentaMG";
             this.TxtACuentaMG.Size = new System.Drawing.Size(92, 20);
             this.TxtACuentaMG.TabIndex = 56;
+            this.TxtACuentaMG.TextChanged += new System.EventHandler(this.TxtACuentaMG_TextChanged);
             // 
             // label22
             // 
@@ -1590,6 +1807,7 @@
             this.DtpInicioMG.Name = "DtpInicioMG";
             this.DtpInicioMG.Size = new System.Drawing.Size(105, 20);
             this.DtpInicioMG.TabIndex = 124;
+            this.DtpInicioMG.ValueChanged += new System.EventHandler(this.DtpInicioMG_ValueChanged);
             // 
             // label13
             // 
@@ -1772,7 +1990,7 @@
             // 
             // BntSocios
             // 
-            this.BntSocios.Location = new System.Drawing.Point(708, 278);
+            this.BntSocios.Location = new System.Drawing.Point(575, 264);
             this.BntSocios.Name = "BntSocios";
             this.BntSocios.Size = new System.Drawing.Size(75, 23);
             this.BntSocios.TabIndex = 131;
@@ -1786,6 +2004,7 @@
             this.DgvSociosG.Name = "DgvSociosG";
             this.DgvSociosG.Size = new System.Drawing.Size(680, 150);
             this.DgvSociosG.TabIndex = 136;
+            this.DgvSociosG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DgvSociosG_KeyPress);
             // 
             // ctr_AyuSocios
             // 
@@ -1796,16 +2015,16 @@
             this.ctr_AyuSocios.Filtro = "";
             this.ctr_AyuSocios.ListaAlias = "Codigo,apellidos";
             this.ctr_AyuSocios.ListaCampos = "Badgenumber,lastname,userid";
-            this.ctr_AyuSocios.Location = new System.Drawing.Point(151, 278);
+            this.ctr_AyuSocios.Location = new System.Drawing.Point(14, 264);
             this.ctr_AyuSocios.LongCod = "2";
             this.ctr_AyuSocios.LongDesc = "50";
             this.ctr_AyuSocios.Name = "ctr_AyuSocios";
             this.ctr_AyuSocios.NombreTabla = "userinfo";
             this.ctr_AyuSocios.Requerido = true;
-            this.ctr_AyuSocios.Size = new System.Drawing.Size(562, 37);
+            this.ctr_AyuSocios.Size = new System.Drawing.Size(528, 37);
             this.ctr_AyuSocios.TabIndex = 130;
             this.ctr_AyuSocios.Titulo = "SOCIOS";
-            this.ctr_AyuSocios.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.ctr_AyuMembGrupo_AlDevolverDato);
+            this.ctr_AyuSocios.AlDevolverDato += new Ctr_Ayuda.Ctr_Ayuda.AlDevolverDatoEventHandler(this.Ctr_AyuSocios_AlDevolverDato);
             // 
             // tabPage5
             // 
@@ -1817,7 +2036,7 @@
             this.tabPage5.Controls.Add(this.PicPagos);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(945, 512);
+            this.tabPage5.Size = new System.Drawing.Size(932, 512);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "PAGOS";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1846,6 +2065,87 @@
             this.DgvPagosMembresias.Size = new System.Drawing.Size(674, 132);
             this.DgvPagosMembresias.TabIndex = 128;
             this.DgvPagosMembresias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPagosMembresias_CellContentClick);
+            // 
+            // PagosID
+            // 
+            this.PagosID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PagosID.DataPropertyName = "id";
+            this.PagosID.HeaderText = "ID";
+            this.PagosID.Name = "PagosID";
+            this.PagosID.ReadOnly = true;
+            this.PagosID.Width = 43;
+            // 
+            // IdSocios
+            // 
+            this.IdSocios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IdSocios.DataPropertyName = "UserInfoID";
+            this.IdSocios.HeaderText = "Socio";
+            this.IdSocios.Name = "IdSocios";
+            this.IdSocios.ReadOnly = true;
+            this.IdSocios.Width = 59;
+            // 
+            // DescripcionMembPagos
+            // 
+            this.DescripcionMembPagos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DescripcionMembPagos.DataPropertyName = "DescripcionMembresias";
+            this.DescripcionMembPagos.HeaderText = "Membresia";
+            this.DescripcionMembPagos.Name = "DescripcionMembPagos";
+            this.DescripcionMembPagos.ReadOnly = true;
+            this.DescripcionMembPagos.Width = 83;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "FechaInicio";
+            this.dataGridViewTextBoxColumn4.HeaderText = "F. Inicio";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 64;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "FechaFinal";
+            this.dataGridViewTextBoxColumn5.HeaderText = "F. Termino";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 76;
+            // 
+            // FechaMaximaPago
+            // 
+            this.FechaMaximaPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FechaMaximaPago.DataPropertyName = "fechaMaximadePago";
+            this.FechaMaximaPago.HeaderText = "F. Maxima Pago";
+            this.FechaMaximaPago.Name = "FechaMaximaPago";
+            this.FechaMaximaPago.ReadOnly = true;
+            this.FechaMaximaPago.Width = 99;
+            // 
+            // PrecioPactado
+            // 
+            this.PrecioPactado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PrecioPactado.DataPropertyName = "PrecioPactado";
+            this.PrecioPactado.HeaderText = "Precio";
+            this.PrecioPactado.Name = "PrecioPactado";
+            this.PrecioPactado.ReadOnly = true;
+            this.PrecioPactado.Width = 62;
+            // 
+            // NroCuota
+            // 
+            this.NroCuota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NroCuota.DataPropertyName = "NroCuota";
+            this.NroCuota.HeaderText = "Nro Cuota";
+            this.NroCuota.Name = "NroCuota";
+            this.NroCuota.ReadOnly = true;
+            this.NroCuota.Width = 74;
+            // 
+            // Saldo
+            // 
+            this.Saldo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Saldo.DataPropertyName = "saldo";
+            this.Saldo.HeaderText = "Saldo";
+            this.Saldo.Name = "Saldo";
+            this.Saldo.ReadOnly = true;
+            this.Saldo.Width = 59;
             // 
             // panel2
             // 
@@ -1996,7 +2296,7 @@
             this.panel3.Controls.Add(this.BntAdicionar);
             this.panel3.Location = new System.Drawing.Point(13, 553);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(869, 63);
+            this.panel3.Size = new System.Drawing.Size(934, 63);
             this.panel3.TabIndex = 10;
             // 
             // BntMembGrupo
@@ -2111,311 +2411,48 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // PagosID
+            // ChkAsistencia
             // 
-            this.PagosID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.PagosID.DataPropertyName = "id";
-            this.PagosID.HeaderText = "ID";
-            this.PagosID.Name = "PagosID";
-            this.PagosID.ReadOnly = true;
-            this.PagosID.Width = 43;
+            this.ChkAsistencia.AutoSize = true;
+            this.ChkAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChkAsistencia.ForeColor = System.Drawing.Color.Blue;
+            this.ChkAsistencia.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ChkAsistencia.Location = new System.Drawing.Point(970, 9);
+            this.ChkAsistencia.Name = "ChkAsistencia";
+            this.ChkAsistencia.Size = new System.Drawing.Size(91, 19);
+            this.ChkAsistencia.TabIndex = 130;
+            this.ChkAsistencia.Text = "Asistencia";
+            this.ChkAsistencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ChkAsistencia.UseVisualStyleBackColor = true;
+            this.ChkAsistencia.CheckedChanged += new System.EventHandler(this.ChkAsistencia_CheckedChanged);
             // 
-            // IdSocios
+            // DgvAsistencia
             // 
-            this.IdSocios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.IdSocios.DataPropertyName = "UserInfoID";
-            this.IdSocios.HeaderText = "Socio";
-            this.IdSocios.Name = "IdSocios";
-            this.IdSocios.ReadOnly = true;
-            this.IdSocios.Width = 59;
+            this.DgvAsistencia.AllowUserToAddRows = false;
+            this.DgvAsistencia.AllowUserToDeleteRows = false;
+            this.DgvAsistencia.AllowUserToOrderColumns = true;
+            this.DgvAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvAsistencia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Fecha});
+            this.DgvAsistencia.Location = new System.Drawing.Point(937, 34);
+            this.DgvAsistencia.Name = "DgvAsistencia";
+            this.DgvAsistencia.ReadOnly = true;
+            this.DgvAsistencia.Size = new System.Drawing.Size(177, 474);
+            this.DgvAsistencia.TabIndex = 131;
             // 
-            // DescripcionMembPagos
+            // Fecha
             // 
-            this.DescripcionMembPagos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DescripcionMembPagos.DataPropertyName = "DescripcionMembresias";
-            this.DescripcionMembPagos.HeaderText = "Membresia";
-            this.DescripcionMembPagos.Name = "DescripcionMembPagos";
-            this.DescripcionMembPagos.ReadOnly = true;
-            this.DescripcionMembPagos.Width = 83;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "FechaInicio";
-            this.dataGridViewTextBoxColumn4.HeaderText = "F. Inicio";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 69;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "FechaFinal";
-            this.dataGridViewTextBoxColumn5.HeaderText = "F. Termino";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 82;
-            // 
-            // FechaMaximaPago
-            // 
-            this.FechaMaximaPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.FechaMaximaPago.DataPropertyName = "fechaMaximadePago";
-            this.FechaMaximaPago.HeaderText = "F. Maxima Pago";
-            this.FechaMaximaPago.Name = "FechaMaximaPago";
-            this.FechaMaximaPago.ReadOnly = true;
-            this.FechaMaximaPago.Width = 99;
-            // 
-            // PrecioPactado
-            // 
-            this.PrecioPactado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.PrecioPactado.DataPropertyName = "PrecioPactado";
-            this.PrecioPactado.HeaderText = "Precio";
-            this.PrecioPactado.Name = "PrecioPactado";
-            this.PrecioPactado.ReadOnly = true;
-            this.PrecioPactado.Width = 62;
-            // 
-            // NroCuota
-            // 
-            this.NroCuota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NroCuota.DataPropertyName = "NroCuota";
-            this.NroCuota.HeaderText = "Nro Cuota";
-            this.NroCuota.Name = "NroCuota";
-            this.NroCuota.ReadOnly = true;
-            this.NroCuota.Width = 74;
-            // 
-            // Saldo
-            // 
-            this.Saldo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Saldo.DataPropertyName = "saldo";
-            this.Saldo.HeaderText = "Saldo";
-            this.Saldo.Name = "Saldo";
-            this.Saldo.ReadOnly = true;
-            this.Saldo.Width = 59;
-            // 
-            // DgvMembresias
-            // 
-            this.DgvMembresias.AllowUserToAddRows = false;
-            this.DgvMembresias.AllowUserToDeleteRows = false;
-            this.DgvMembresias.AllowUserToOrderColumns = true;
-            this.DgvMembresias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DgvMembresias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvMembresias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12});
-            this.DgvMembresias.Location = new System.Drawing.Point(19, 60);
-            this.DgvMembresias.Name = "DgvMembresias";
-            this.DgvMembresias.ReadOnly = true;
-            this.DgvMembresias.Size = new System.Drawing.Size(661, 132);
-            this.DgvMembresias.TabIndex = 129;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 43;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "UserInfoID";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Socio";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 59;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "DescripcionMembresias";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Membresia";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 83;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "FechaInicio";
-            this.dataGridViewTextBoxColumn7.HeaderText = "F. Inicio";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 64;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "FechaFinal";
-            this.dataGridViewTextBoxColumn8.HeaderText = "F. Termino";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 76;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "fechaMaximadePago";
-            this.dataGridViewTextBoxColumn9.HeaderText = "F. Maxima Pago";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 99;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "PrecioPactado";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Precio";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 62;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "NroCuota";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Nro Cuota";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 74;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "saldo";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Saldo";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 59;
-            // 
-            // dgvMembPersonal
-            // 
-            this.dgvMembPersonal.AllowUserToAddRows = false;
-            this.dgvMembPersonal.AllowUserToDeleteRows = false;
-            this.dgvMembPersonal.AllowUserToOrderColumns = true;
-            this.dgvMembPersonal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvMembPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMembPersonal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn18,
-            this.dataGridViewTextBoxColumn19,
-            this.dataGridViewTextBoxColumn20});
-            this.dgvMembPersonal.Location = new System.Drawing.Point(9, 101);
-            this.dgvMembPersonal.Name = "dgvMembPersonal";
-            this.dgvMembPersonal.ReadOnly = true;
-            this.dgvMembPersonal.Size = new System.Drawing.Size(661, 132);
-            this.dgvMembPersonal.TabIndex = 130;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 43;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "UserInfoID";
-            this.dataGridViewTextBoxColumn13.HeaderText = "Socio";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Width = 59;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "DescripcionMembresias";
-            this.dataGridViewTextBoxColumn14.HeaderText = "Membresia";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Width = 83;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "FechaInicio";
-            this.dataGridViewTextBoxColumn15.HeaderText = "F. Inicio";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Width = 64;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn16.DataPropertyName = "FechaFinal";
-            this.dataGridViewTextBoxColumn16.HeaderText = "F. Termino";
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Width = 76;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn17.DataPropertyName = "fechaMaximadePago";
-            this.dataGridViewTextBoxColumn17.HeaderText = "F. Maxima Pago";
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.ReadOnly = true;
-            this.dataGridViewTextBoxColumn17.Width = 99;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn18.DataPropertyName = "PrecioPactado";
-            this.dataGridViewTextBoxColumn18.HeaderText = "Precio";
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.ReadOnly = true;
-            this.dataGridViewTextBoxColumn18.Width = 62;
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn19.DataPropertyName = "NroCuota";
-            this.dataGridViewTextBoxColumn19.HeaderText = "Nro Cuota";
-            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            this.dataGridViewTextBoxColumn19.ReadOnly = true;
-            this.dataGridViewTextBoxColumn19.Width = 74;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            this.dataGridViewTextBoxColumn20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn20.DataPropertyName = "saldo";
-            this.dataGridViewTextBoxColumn20.HeaderText = "Saldo";
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            this.dataGridViewTextBoxColumn20.ReadOnly = true;
-            this.dataGridViewTextBoxColumn20.Width = 59;
-            // 
-            // CmbGenero
-            // 
-            this.CmbGenero.FormattingEnabled = true;
-            this.CmbGenero.Location = new System.Drawing.Point(438, 72);
-            this.CmbGenero.Name = "CmbGenero";
-            this.CmbGenero.Size = new System.Drawing.Size(105, 21);
-            this.CmbGenero.TabIndex = 99;
+            this.Fecha.DataPropertyName = "FechaAsistencia";
+            this.Fecha.HeaderText = "F.Asistencia";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
             // 
             // FrmSocios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(959, 628);
+            this.ClientSize = new System.Drawing.Size(1157, 628);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.TabSocios);
             this.Name = "FrmSocios";
@@ -2424,6 +2461,8 @@
             this.Load += new System.EventHandler(this.FrmSocios_Load);
             this.TabSocios.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSocios)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -2440,6 +2479,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicDetalle)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictPersonal)).EndInit();
             this.PnlACuenta.ResumeLayout(false);
             this.PnlACuenta.PerformLayout();
@@ -2460,8 +2500,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicPagos)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMembresias)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMembPersonal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvAsistencia)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2662,6 +2701,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.ComboBox CmbGenero;
+        private System.Windows.Forms.DataGridView DgvAsistencia;
+        private System.Windows.Forms.CheckBox ChkAsistencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
     }
 }
 

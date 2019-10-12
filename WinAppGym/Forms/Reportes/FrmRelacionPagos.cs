@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Activities.Expressions;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinAppGym.Models;
+using WinAppReports;
+using WinAppReports.Reports;
+
 
 namespace WinAppGym.Forms
 {
@@ -55,6 +52,31 @@ namespace WinAppGym.Forms
         private void BntSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BntImprimir_Click(object sender, EventArgs e)
+        {
+            Zk_liquidacionDiaria Cry = new Zk_liquidacionDiaria();
+            FrmReports Frm = new FrmReports();
+
+            try
+            {
+                // Cry.DataSourceConnections(0).SetConnection("counter","zkaccess","sa","12345");
+                Cry.SetDatabaseLogon("sa", "12345");
+
+                Cry.SetParameterValue("@base", "zkaccess");
+                Cry.SetParameterValue("@empresa", "000");
+
+                Cry.SetParameterValue("@FechaDesde", DtpDesde.Text);
+                Cry.SetParameterValue("@FechaHasta", DtpHasta.Text);
+
+                Frm.crystalReportViewer1.ReportSource = Cry;
+                Frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

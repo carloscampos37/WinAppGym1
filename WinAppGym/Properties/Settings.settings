@@ -9,7 +9,13 @@
       <Value Profile="(Default)">12345</Value>
     </Setting>
     <Setting Name="CadenaConexion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=(local);database=ZkAccess;User ID=sa;Password=12345</Value>
+      <Value Profile="(Default)">Server=(LOCAL);database=ZkAccess;User ID=sa;Password=12345</Value>
+    </Setting>
+    <Setting Name="VGBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zkaccess</Value>
+    </Setting>
+    <Setting Name="VGServidor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">hp</Value>
     </Setting>
   </Settings>
 </SettingsFile>

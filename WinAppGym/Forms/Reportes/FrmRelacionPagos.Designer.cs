@@ -145,6 +145,7 @@
             this.BntImprimir.TabIndex = 6;
             this.BntImprimir.Text = "Imprimir";
             this.BntImprimir.UseVisualStyleBackColor = false;
+            this.BntImprimir.Click += new System.EventHandler(this.BntImprimir_Click);
             // 
             // DgvConsulta
             // 

@@ -63,7 +63,7 @@ namespace Sample
                     RowLoop = RowLoop + width;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 //ZKCE.SysException.ZKCELogger logger = new ZKCE.SysException.ZKCELogger(ex);
                 //logger.Append();
@@ -112,7 +112,7 @@ namespace Sample
                     return GetBytes;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 //ZKCE.SysException.ZKCELogger logger = new ZKCE.SysException.ZKCELogger(ex);
                 //logger.Append();
@@ -196,7 +196,7 @@ namespace Sample
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // ZKCE.SysException.ZKCELogger logger = new ZKCE.SysException.ZKCELogger(ex);
                 // logger.Append();
@@ -285,7 +285,7 @@ namespace Sample
                 FileStream.Close();
                 TmpBinaryWriter.Close();
             }
-            catch (Exception ex)
+            catch 
             {
                 //ZKCE.SysException.ZKCELogger logger = new ZKCE.SysException.ZKCELogger(ex);
                 //logger.Append();

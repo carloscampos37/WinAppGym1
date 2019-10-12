@@ -13,6 +13,7 @@ using System.Threading;
 using WinAppGym.Properties;
 using Clases;
 using Sample;
+using Class;
 
 namespace WinAppGym
 {
@@ -20,7 +21,7 @@ namespace WinAppGym
     {
         #region Variables Privadas
 
-        private string VGCnxSql = Settings.Default.CadenaConexion; 
+        private string VGCnxSql = Settings.Default.CadenaConexion;
         private const int MESSAGE_CAPTURED_OK = 0x0400 + 6;
         private const int REGISTER_FINGER_COUNT = 3;
         private bool bIdentify = true;
@@ -46,15 +47,17 @@ namespace WinAppGym
         private byte[][] RegTmps = new byte[3][];
         private int[] vActualiza;
         private bool vAdiciona;
-        private int vCorrelativoGrupo;
         private int vCorrelativoId;
         private int vCorrelativoSocio;
         private int vHuellas;
         private int vNroHuella;
         private int vTipo;
         private int vUserId;
-       [DllImport("user32.dll", EntryPoint = "SendMessageA")]
-       public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
+        private DataTable DtItem;
+
+        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
 
         #endregion Variables Privadas
 
@@ -84,9 +87,10 @@ namespace WinAppGym
             }
 
             FormHandle = this.Handle;
-     
+            DtItem = CrearTabla();
             CargarAyudas();
             CargarCombos();
+
             ActivaBotones(true, true, true, true, true, false, false, false, true);
         }
 
@@ -109,24 +113,24 @@ namespace WinAppGym
             using (Model1 bd = new Model1())
             {
                 var ResultID = (from dd in bd.USERINFO
-                                 orderby dd.USERID descending
-                                 select dd).FirstOrDefault();
+                                orderby dd.USERID descending
+                                select dd).FirstOrDefault();
 
-                vCorrelativoSocio = Convert.ToInt32(ResultID.USERID );
+                vCorrelativoSocio = Convert.ToInt32(ResultID.USERID);
 
                 var ResultCodigo = (from dd in bd.Zk_Correlativos
-                              select dd).FirstOrDefault();
+                                    select dd).FirstOrDefault();
 
 
-                TxtCodigo.Text = Convert.ToString(ResultCodigo.Codigo );
-                vCorrelativoSocio = Convert.ToInt32(ResultID.USERID +1);
+                TxtCodigo.Text = Convert.ToString(ResultCodigo.Codigo);
+                vCorrelativoSocio = Convert.ToInt32(ResultID.USERID + 1);
                 vCorrelativoId = Convert.ToInt32(vCorrelativoSocio);
                 TxtId.Text = Convert.ToString(vCorrelativoId);
             }
 
             vAdiciona = true;
             vTipo = 1;
-            ClsFuncNet.ActivaTab(2, 5, ref TabSocios);
+            ClsFunc.ActivaTab(2, 5, ref TabSocios);
         }
 
         private void BntCamara_Click(object sender, EventArgs e)
@@ -150,7 +154,7 @@ namespace WinAppGym
                 zkfp2.Terminate();
 
             BntFoto.Visible = false;
-            ClsFuncNet.ActivaTab(1, 5, ref TabSocios);
+            ClsFunc.ActivaTab(1, 5, ref TabSocios);
             ActivaBotones(true, true, true, true, true, false, false, false, true);
         }
 
@@ -189,7 +193,7 @@ namespace WinAppGym
             }
             if (vTipo == 3)
             {
-                if (ClsFuncGym.ValidaFechasMembresias(vUserId,DtpInicioMp.Value ))
+                if (ClsFuncGym.ValidaFechasMembresias(vUserId, DtpInicioMp.Value))
                 {
                     vOk = 0;
                     MessageBox.Show("Fecha de Inicio membresia esta en rango de membresias activas , VERIFIQUE !!!! ");
@@ -215,9 +219,27 @@ namespace WinAppGym
             }
             if (vTipo == 4)
             {
-                GrabaMembG();
+                vOk = 1;
+                if (ChkPagoTotalG.Checked != true)
+                {
+                    if (TxtACuentaMG.Text == "" || TxtACuentaMG.Text == "0")
+                    {
+                        MessageBox.Show(" Pago a cuenta con valor 0");
+                        vOk = 0;
+                    }
+                }
+                else
+                {
+                    if (!(TxtACuentaMG.Text == "0" || TxtACuentaMG.Text == ""))
+                    {
+                        MessageBox.Show(" Pago a cuenta con valor > 0 con Pago TOTAL");
+                        vOk = 0;
+                    }
+                }
+                if (vOk == 1)
+                    GrabaMembG();
             }
-            if (vTipo ==5)
+            if (vTipo == 5)
             {
                 if (Convert.ToDecimal(TxtSaldo.Text) < Convert.ToDecimal(TxtImporte.Text))
                 {
@@ -229,7 +251,7 @@ namespace WinAppGym
                     if (TxtImporte.Text == "")
                         TxtImporte.Text = "0.00";
 
-                    if (Convert.ToDecimal(TxtImporte.Text)==0)
+                    if (Convert.ToDecimal(TxtImporte.Text) == 0)
                     {
                         MessageBox.Show(" Importe a pagar con valor CERO (0.00) ");
                         vOk = 0;
@@ -246,13 +268,13 @@ namespace WinAppGym
                 if (TxtDescuento.Text == "")
                     TxtDescuento.Text = "0";
 
-                if (Convert.ToDecimal(TxtDescuento.Text) > 0)
+                if (Convert.ToInt32(TxtDescuento.Text) > 0)
                 {
                     ActivaBotones(false, false, false, false, false, false, true, true, false);
-               }
+                }
                 else
                 {
-                    ClsFuncNet.ActivaTab(1, 5, ref TabSocios);
+                    ClsFunc.ActivaTab(1, 5, ref TabSocios);
                     ActivaBotones(true, true, true, true, true, false, false, false, true);
                 }
                 if (vTipo == 1)
@@ -292,7 +314,7 @@ namespace WinAppGym
 
         private void BntImprimir_Click(object sender, EventArgs e)
         {
-            ClsFuncNet.ActivaTab(1, 5, ref TabSocios);
+            ClsFunc.ActivaTab(1, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
             }
@@ -304,7 +326,7 @@ namespace WinAppGym
             {
                 bIdentify = true;
                 InicializaSensor();
-     
+
                 BntActivar.Visible = true;
                 BntCierra.Visible = true;
                 BntCancelarH.Visible = true;
@@ -353,22 +375,27 @@ namespace WinAppGym
 
             TxtHuella.Text = "reader parameter, image width:" + mfpWidth + ", height:" + mfpHeight + ", dpi:" + mfpDpi + " ";
 
-            Thread captureThread = new Thread(new ThreadStart(DoCapture));
-            captureThread.IsBackground = true;
+            Thread captureThread = new Thread(new ThreadStart(DoCapture))
+            {
+                IsBackground = true
+            };
             captureThread.Start();
             bIsTimeToDie = false;
             TxtHuella.Text = "";
 
-       
+
         }
         private void BntMembGrupo_Click(object sender, EventArgs e)
         {
+            DtItem.Clear();
+            DgvSociosG.DataSource = DtItem;
+            ctr_AyuSocios.Visible = true;
             using (Model1 bd = new Model1())
             {
                 vTipo = 4;
                 ChkPagoTotalG.Checked = false;
                 ctr_AyuMembGrupo.Filtro = " MembresiaGrupo=1 AND EstadoAnulado=0 ";
-                ClsFuncNet.ActivaTab(4, 5, ref TabSocios);
+                ClsFunc.ActivaTab(4, 5, ref TabSocios);
                 ActivaBotones(false, false, false, false, false, true, true, false, false);
             }
         }
@@ -379,8 +406,8 @@ namespace WinAppGym
             {
                 DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
                 imagen = (byte[])cell.Value;
-                if(imagen !=null)
-                pictPersonal.Image = ClsFuncNet.byteArrayToImage(imagen);
+                if (imagen != null)
+                    pictPersonal.Image = ClsFunc.ByteArrayToImage(imagen);
 
                 LblCodigo.Text = DgvSocios.CurrentRow.Cells["Codigo"].Value.ToString();
                 LblNombres.Text = DgvSocios.CurrentRow.Cells["Nombres"].Value.ToString();
@@ -398,7 +425,7 @@ namespace WinAppGym
             ChkPagototal.Checked = false;
             ctr_AyuMembPersonal.CadenaCone = VGCnxSql;
             ctr_AyuMembPersonal.Filtro = " MembresiaGrupo=0 AND EstadoAnulado=0 ";
-            ClsFuncNet.ActivaTab(3, 5, ref TabSocios);
+            ClsFunc.ActivaTab(3, 5, ref TabSocios);
             ActivaBotones(false, false, false, false, false, true, true, false, false);
         }
 
@@ -426,20 +453,20 @@ namespace WinAppGym
                 TxtCelular.Text = Resultado.OPHONE;
                 TxtCorreo.Text = Resultado.email;
                 ChkBaja.Checked = Convert.ToBoolean(Resultado.status);
-                DtpBaja.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.delete_time, "01-01-1900"));
-                DtpNacimiento.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.BIRTHDAY, "01-01-1900"));
-                DtpInicio.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.acc_enddate, "01-01-1900"));
-                DtpTermino.Value = Convert.ToDateTime(ClsFuncNet.EsNulo(Resultado.acc_enddate, "01-01-1900"));
-                CmbGenero.Text =Convert.ToString( ClsFuncNet.BuscaCombo(CmbGenero, Resultado.Gender ));
+                DtpBaja.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.delete_time, "01-01-1900"));
+                DtpNacimiento.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.BIRTHDAY, "01-01-1900"));
+                DtpInicio.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.acc_enddate, "01-01-1900"));
+                DtpTermino.Value = Convert.ToDateTime(ClsFunc.EsNulo(Resultado.acc_enddate, "01-01-1900"));
+                CmbGenero.Text = Convert.ToString(ClsFunc.BuscaCombo(CmbGenero, Resultado.Gender));
                 InicializaVariables();
             }
 
-            ClsFuncNet.ActivaTab(2, 5, ref TabSocios);
+            ClsFunc.ActivaTab(2, 5, ref TabSocios);
 
             vAdiciona = false;
             ChkBaja.Visible = true;
             vTipo = 2;
-            PicDetalle.Image = ClsFuncNet.byteArrayToImage(imagen);
+            PicDetalle.Image = ClsFunc.ByteArrayToImage(imagen);
 
             ActivaBotones(false, false, false, false, false, true, true, false, false);
         }
@@ -450,7 +477,7 @@ namespace WinAppGym
             {
                 DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
                 imagen = (byte[])cell.Value;
-                PicPagos.Image = ClsFuncNet.byteArrayToImage(imagen);
+                PicPagos.Image = ClsFunc.ByteArrayToImage(imagen);
 
                 LblCodigoP.Text = DgvSocios.CurrentRow.Cells["Codigo"].Value.ToString();
                 LblNombresP.Text = DgvSocios.CurrentRow.Cells["Nombres"].Value.ToString();
@@ -459,7 +486,6 @@ namespace WinAppGym
                 var query = from MemSocio in bd.Zk_MembresiasxSocio
                             join Memb in bd.Zk_Membresias on MemSocio.MembresiasID equals Memb.ID
                             where (MemSocio.UserInfoID == vUserId)
-                            //(MemSocio.EstadoCancelacion=false )
                             orderby MemSocio.FechaFinal descending
                             select new
                             {
@@ -476,11 +502,11 @@ namespace WinAppGym
                 vTipo = 5;
             }
 
-            ClsFuncNet.ActivaTab(5, 5, ref TabSocios);
+            ClsFunc.ActivaTab(5, 5, ref TabSocios);
             using (Model1 bd = new Model1())
             {
             }
-            PicPagos.Image = ClsFuncNet.byteArrayToImage(imagen);
+            PicPagos.Image = ClsFunc.ByteArrayToImage(imagen);
             ActivaBotones(false, false, false, false, false, true, true, false, false);
         }
 
@@ -489,36 +515,13 @@ namespace WinAppGym
             Close();
         }
 
-        private void BntSocios_Click(object sender, EventArgs e)
-        {
-        }
         #endregion Botones
 
         #region Ayudas
 
-        private void ctr_AyuMembGrupo_AlDevolverDato(object Sender, DataRow e)
+        private void Ctr_AyuMembGrupo_AlDevolverDato(object Sender, DataRow e)
         {
-            using (Model1 bd = new Model1())
-            {
-                string vCodigo = Convert.ToString(ctr_AyuSocios.Codigo);
-                var Resultado = (from user in bd.USERINFO
-                                 where user.Badgenumber == vCodigo
-                                 select new
-                                 {
-                                     user.USERID,
-                                     user.Name,
-                                     user.lastname
-                                 }
-                                 ).First();
-            }
-        }
-
-        private void ctr_AyuMembGrupo_Load(object sender, EventArgs e)
-        {
-        }
-        private void ctr_AyuMembPersonal_AlDevolverDato(object Sender, DataRow e)
-        {
-            string id = ctr_AyuMembPersonal.Codigo ;
+            string id = ctr_AyuMembGrupo.Codigo;
             using (Model1 bd = new Model1())
             {
                 int vId = Convert.ToInt32(id);
@@ -526,6 +529,34 @@ namespace WinAppGym
                 var Resultado = (from dd in bd.Zk_Membresias
                                  join ee in bd.Zk_Periodos on dd.PeriodosID equals ee.ID
                                  where dd.ID == vId
+                                 select new
+                                 {
+                                     ee.Meses,
+                                     ee.Dias,
+                                     dd.DescripcionMembresias,
+                                     dd.Precio,
+                                     dd.CantidaddeSocios
+                                 }).First();
+
+
+                TxtPrecioG.Text = Convert.ToString(Resultado.Precio);
+                TxtMesesG.Text = Convert.ToString(Resultado.Meses);
+                TxtDiasG.Text = Convert.ToString(Resultado.Dias);
+                DtpInicioMG.Value = DateTime.Now;
+                TxtACuentaMG.Text = TxtPrecioG.Text;
+                TxtNroSocios.Text = Convert.ToString(Resultado.CantidaddeSocios);
+            }
+        }
+        private void Ctr_AyuMembPersonal_AlDevolverDato(object Sender, DataRow e)
+        {
+            int Id = Convert.ToInt32(ctr_AyuMembPersonal.Codigo);
+
+            using (Model1 bd = new Model1())
+            {
+              
+                var Resultado = (from dd in bd.Zk_Membresias
+                                 join ee in bd.Zk_Periodos on dd.PeriodosID equals ee.ID
+                                 where dd.ID == Id
                                  select new
                                  {
                                      ee.Meses,
@@ -581,17 +612,8 @@ namespace WinAppGym
                 DgvMembresias.DataSource = query.ToList();
                 DataGridViewImageCell cell = DgvSocios.CurrentRow.Cells["photo"] as DataGridViewImageCell;
                 imagen = (byte[])cell.Value;
-                pictFoto.Image = ClsFuncNet.byteArrayToImage(imagen);
+                pictFoto.Image = ClsFunc.ByteArrayToImage(imagen);
             }
-        }
-
-        private void DtpInicioMG_ValueChanged(object sender, EventArgs e)
-        {
-            int vMeses = Convert.ToInt32(TxtMeses.Text);
-            int vDias = Convert.ToInt32(TxtDias.Text);
-            DtpTerminoMG.Value = DtpInicioMG.Value.AddMonths(vMeses);
-            DtpTerminoMG.Value = DtpTerminoMG.Value.AddDays(vDias);
-            DtpMaxPagoMG.Value = DtpInicioMG.Value.AddDays(-1);
         }
 
         private void DtpInicioMp_ValueChanged(object sender, EventArgs e)
@@ -599,12 +621,12 @@ namespace WinAppGym
             int vMeses = Convert.ToInt32(TxtMeses.Text);
             int vDias = Convert.ToInt32(TxtDias.Text);
             DtpTerminoMp.Value = DtpInicioMp.Value.AddMonths(vMeses);
-            DtpTerminoMp.Value = DtpTerminoMp.Value.AddDays(vDias );
+            DtpTerminoMp.Value = DtpTerminoMp.Value.AddDays(vDias);
             DtpMaxPagoMp.Value = DtpInicioMp.Value.AddDays(-1);
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (ClsFuncNet.EsNumero(TxtBuscar.Text, 0))
+            if (ClsFunc.EsNumero(TxtBuscar.Text, 0))
             {
                 using (Model1 bd = new Model1())
 
@@ -681,14 +703,12 @@ namespace WinAppGym
         {
             if (ChkPagoTotalG.Checked == false)
             {
-                DtpMaxPagoMG.Visible = true;
-                TxtACuentaMG.Visible = true;
+                panel5.Visible = true;
                 TxtACuentaMG.Text = "0";
             }
             else
             {
-                DtpMaxPagoMG.Visible = false;
-                TxtACuentaMG.Visible = false;
+                panel5.Visible = false;
                 TxtACuentaMG.Text = "0";
             }
         }
@@ -873,7 +893,7 @@ namespace WinAppGym
                 case "Yellow":
                     Bnt.BackColor = Color.White;
                     vHuellas = 0;
-                   break;
+                    break;
 
                 case "Control":
                     if (vHuellas == 1) return;
@@ -933,7 +953,7 @@ namespace WinAppGym
                 if (vAdiciona == true)
                     vUserId = Convert.ToInt32(TxtId.Text);
 
-                        user.USERID = vUserId;
+                user.USERID = vUserId;
                 user.FINGERID = vNro;
                 user.USETYPE = 0;
                 user.Flag = 1;
@@ -962,15 +982,15 @@ namespace WinAppGym
                     cbRegTmp = 0;
                     textRes.Text = "";
                     TxtHuella.Text = "Presione 3 veces el enrrolador !! ";
-                        IsRegister = true;
+                    IsRegister = true;
                     return true;
                 }
                 else
-                    {
-                        IsRegister = false;
+                {
+                    IsRegister = false;
                     return false;
-                    }
-              
+                }
+
             }
             catch (Exception ex)
             {
@@ -1014,7 +1034,7 @@ namespace WinAppGym
                     zkfp2.Terminate();
                     MessageBox.Show("Inicializacion Fallo, ERROR Nro. =" + ret + " !");
                     return false;
-                        }
+                }
             }
             catch (Exception ex)
             {
@@ -1035,7 +1055,7 @@ namespace WinAppGym
             BntHuella7.BackColor = Color.White;
             BntHuella8.BackColor = Color.White;
             BntHuella9.BackColor = Color.White;
-             vActualiza = new int[10];
+            vActualiza = new int[10];
             ChkHuellas.Checked = false;
             vHuellas = 0;
         }
@@ -1115,12 +1135,12 @@ namespace WinAppGym
         {
             if (e.KeyChar == Convert.ToChar(13))
             {
-                if (ClsFuncNet.EsNumero(TxtDescuento.Text, 0))
+                if (ClsFunc.EsNumero(TxtDescuento.Text, 0))
                 {
                     if (!(Convert.ToInt32(TxtDescuento.Text) == 0))
                     {
                         ctr_AyuAutorizacion.Visible = true;
-                        TxtImporteaPagar.Text =Convert.ToString( Convert.ToDecimal(TxtPrecio.Text ) -Convert.ToDecimal(TxtDescuento.Text));
+                        TxtImporteaPagar.Text = Convert.ToString(Convert.ToDecimal(TxtPrecio.Text) - Convert.ToDecimal(TxtDescuento.Text));
                     }
                     else
                     {
@@ -1159,7 +1179,7 @@ namespace WinAppGym
                 case MESSAGE_CAPTURED_OK:
                     {
                         MemoryStream ms = new MemoryStream();
-                       BitmapFormat.GetBitmap(FPBuffer, mfpWidth, mfpHeight, ref ms);
+                        BitmapFormat.GetBitmap(FPBuffer, mfpWidth, mfpHeight, ref ms);
                         Bitmap bmp = new Bitmap(ms);
                         this.PicHuellas.Image = bmp;
 
@@ -1173,7 +1193,7 @@ namespace WinAppGym
                             if (zkfp.ZKFP_ERR_OK == ret)
                             {
                                 TxtHuella.Text = "PASO 1: El enrrolador ya esta registrado por  " + fid + "! ";
-                      //          return;
+                                //          return;
                             }
 
                             if (RegisterCount > 0 && zkfp2.DBMatch(mDBHandle, CapTmp, RegTmps[RegisterCount - 1]) <= 0)
@@ -1193,7 +1213,7 @@ namespace WinAppGym
                                 {
                                     iFid++;
                                     textRes.Text = strShow;
-                            
+
                                     MessageBox.Show("enrolador OK \n");
                                     BntGrabarH.Visible = true;
                                 }
@@ -1269,36 +1289,50 @@ namespace WinAppGym
             BntSalir.Visible = salir;
         }
 
-        private void AdicionaPagos(Boolean vtotal)
+        private void AdicionaPagos(Boolean vtotal, int zz)
         {
-            using (Model1 bd = new Model1())
+            using (Model1 bd1 = new Model1())
             {
-                var Resultado = (from dd in bd.Zk_MembresiasxSocio
+                var Resultado = (from dd in bd1.Zk_MembresiasxSocio
                                  orderby dd.ID descending
                                  select new { dd.ID }
                                  ).FirstOrDefault();
 
                 int corr = Resultado.ID;
 
-                Zk_PagosSocios pagossocios = new Zk_PagosSocios();
-
-                pagossocios.MembresiasxSocioID = corr;
-                pagossocios.EstadoAnulado = false;
-                pagossocios.FormaPagoID = 1;
-                pagossocios.NroCuota = 1;
-                pagossocios.TurnoID = 1;
-                pagossocios.Referencia = TxtReferencia.Text;
-                pagossocios.FechaPago = (DateTime.Now).Date;
+                Zk_PagosSocios pagossocios = new Zk_PagosSocios
+                {
+                    MembresiasxSocioID = corr,
+                    EstadoAnulado = false,
+                    FormaPagoID = 1,
+                    NroCuota = 1,
+                    TurnoID = 1,
+                    FechaPago = (DateTime.Now).Date
+                };
                 if (vtotal == true)
                 {
-                    pagossocios.ImportePagado = Convert.ToDecimal(TxtPrecio.Text) - Convert.ToDecimal(TxtDescuento.Text);
+                    if (vTipo == 4)
+                    {
+                        pagossocios.ImportePagado = Convert.ToInt32(DtItem.Rows[zz]["precio"]);
+                    }
+                    else
+                    {
+                        pagossocios.ImportePagado = Convert.ToInt32(TxtPrecio.Text) - Convert.ToInt32(TxtDescuento.Text);
+                    }
                 }
                 else
                 {
-                    pagossocios.ImportePagado = Convert.ToDecimal(TxtACuentaMp.Text);
+                    if (vTipo == 4)
+                    {
+                        pagossocios.ImportePagado = Convert.ToInt32(DtItem.Rows[zz]["Acuenta"]);
+                    }
+                    else
+                    {
+                        pagossocios.ImportePagado = Convert.ToInt32(TxtACuentaMp.Text);
+                    }
                 }
-                bd.Zk_PagosSocios.Add(pagossocios);
-                bd.SaveChanges();
+                bd1.Zk_PagosSocios.Add(pagossocios);
+                bd1.SaveChanges();
             }
         }
 
@@ -1308,8 +1342,8 @@ namespace WinAppGym
             {
                 DateTime vfecha = Convert.ToDateTime(FechaBaja.Date);
                 var Result = (from membsocio in bd.Zk_MembresiasxSocio
-                              where (membsocio.FechaFinal >= vfecha )
-                              & membsocio.UserInfoID==vUserId
+                              where (membsocio.FechaFinal >= vfecha)
+                              & membsocio.UserInfoID == vUserId
                               select new
                               {
                                   membsocio.UserInfoID,
@@ -1320,14 +1354,19 @@ namespace WinAppGym
 
                 foreach (var baja in Result)
                 {
+
                     using (Model1 bd1 = new Model1())
                     {
                         var data = (from memb in bd1.Zk_MembresiasxSocio
                                     where memb.ID == baja.ID
                                     select memb
-                                   ).First() ;
+                                   ).First();
 
                         data.FechaFinal = DtpBaja.Value.Date;
+                        data.FechaAnulacion = DtpBaja.Value.Date;
+                        data.Referencia = "ANULACION ";
+
+
                         bd1.SaveChanges();
                     }
                 }
@@ -1344,7 +1383,7 @@ namespace WinAppGym
 
         private void CargarCombos()
         {
-            ClsFuncNet.CargaCombo(ref CmbGenero, "select id,descripciongenero from zk_genero ");
+            ClsFunc.CargaCombo(ref CmbGenero, "select id,descripciongenero from zk_genero ");
         }
 
         private DataTable CrearTabla()
@@ -1356,10 +1395,13 @@ namespace WinAppGym
             dt.Columns.Add("CodigoG", Type.GetType("System.String"));
             dt.Columns.Add("Name", Type.GetType("System.String"));
             dt.Columns.Add("LastName", Type.GetType("System.String"));
+            dt.Columns.Add("Precio", Type.GetType("System.Int32"));
+            dt.Columns.Add("Acuenta", Type.GetType("System.Int32"));
+
             return dt;
         }
 
-         private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             PicDetalle.Image = (Bitmap)eventArgs.Frame.Clone();
         }
@@ -1368,26 +1410,26 @@ namespace WinAppGym
         {
             using (Model1 bd = new Model1())
             {
-                USERINFO user = new USERINFO();
-
-
-                user.Badgenumber = TxtCodigo.Text;
-                user.Name = TxtNombres.Text;
-                user.lastname = TxtApellidos.Text;
-                user.BIRTHDAY = Convert.ToDateTime(DtpNacimiento.Text);
-                user.email = TxtCorreo.Text;
-                user.Gender = ClsFuncNet.ObtenerDatoCombo(CmbGenero.Text);
-                user.OPHONE = TxtCelular.Text;
+                USERINFO user = new USERINFO
+                {
+                    Badgenumber = TxtCodigo.Text,
+                    Name = TxtNombres.Text,
+                    lastname = TxtApellidos.Text,
+                    BIRTHDAY = Convert.ToDateTime(DtpNacimiento.Text),
+                    email = TxtCorreo.Text,
+                    Gender = ClsFunc.ObtenerDatoCombo(CmbGenero.Text),
+                    OPHONE = TxtCelular.Text
+                };
                 if (PicDetalle.Image == null)
                 {
                     user.PHOTO = null;
                 }
                 else
                 {
-                    user.PHOTO = ClsFuncNet.ImageTobyteArray(PicDetalle.Image);
+                    user.PHOTO = ClsFunc.ImageTobyteArray(PicDetalle.Image);
                 }
                 user.DEFAULTDEPTID = 2;
-                    user.ATT = 1;
+                user.ATT = 1;
                 user.INLATE = 1;
                 user.OUTEARLY = 1;
                 user.OVERTIME = 1;
@@ -1398,8 +1440,8 @@ namespace WinAppGym
                 user.MinAutoSchInterval = 24;
                 user.RegisterOT = 1;
                 user.status = 0;
-                user.acc_startdate =Convert.ToDateTime("01-01-1900");
-                user.acc_enddate= Convert.ToDateTime("01-01-1900");
+                user.acc_startdate = Convert.ToDateTime("01-01-1900");
+                user.acc_enddate = Convert.ToDateTime("01-01-1900");
 
                 bd.USERINFO.Add(user);
                 bd.SaveChanges();
@@ -1418,9 +1460,11 @@ namespace WinAppGym
 
                 int vCodId = Result.USERID;
 
-                acc_levelset_emp level = new acc_levelset_emp();
-                level.employee_id = vCodId;
-                level.acclevelset_id = 1;
+                acc_levelset_emp level = new acc_levelset_emp
+                {
+                    employee_id = vCodId,
+                    acclevelset_id = 1
+                };
 
                 bd.acc_levelset_emp.Add(level);
                 bd.SaveChanges();
@@ -1429,74 +1473,111 @@ namespace WinAppGym
 
         private void GrabaMembG()
         {
+            Int32 vCorrelativo;
             using (Model1 bd = new Model1())
             {
-                Zk_MembresiasxSocio membsocio = new Zk_MembresiasxSocio
+                using (Model1 bd0 = new Model1())
                 {
-                    UserInfoID = vUserId,
-                    MembresiasID = Convert.ToInt32(ctr_AyuMembPersonal.Codigo),
-                    FechaInicio = DtpInicioMp.Value,
-                    FechaFinal = DtpTerminoMp.Value,
-                    fechaMaximadePago = DtpMaxPagoMp.Value
-                };
-                if (TxtDescuento.Text == "")
-                {
-                    TxtDescuento.Text = "0";
+                    var correl = (from corr in bd0.Zk_Correlativos
+                                  where corr.ID == 1
+                                  select corr).First();
+                    vCorrelativo = Convert.ToInt32(correl.Grupo);
+                    correl.Grupo = correl.Grupo + 1;
+                    bd0.SaveChanges();
                 }
 
-                membsocio.Precio = Convert.ToDecimal(TxtPrecio.Text);
-                membsocio.descuento = Convert.ToDecimal(TxtDescuento.Text);
-                membsocio.PrecioPactado = membsocio.Precio - membsocio.descuento;
+                for (int ii = 0; ii < DtItem.Rows.Count; ii++)
+                {
+                    int vUserIDg = Convert.ToInt32(DtItem.Rows[ii]["id"]);
+                    Zk_MembresiasxSocio membsocio = new Zk_MembresiasxSocio
+                    {
+                        UserInfoID = vUserIDg,
+                        MembresiasID = Convert.ToInt32(ctr_AyuMembGrupo.Codigo),
+                        FechaInicio = DtpInicioMG.Value.Date,
+                        FechaFinal = DtpTerminoMG.Value.Date,
+                        fechaMaximadePago = DtpMaxPagoMG.Value.Date,
+                        UsuarioID = 1,
+                        CorrelativoGrupo = vCorrelativo
+                    };
 
-                if (ChkPagototal.Checked)
-                {
-                    membsocio.EstadoCancelacion = true;
-                }
-                else
-                {
-                    membsocio.EstadoCancelacion = false;
-                }
-                bd.Zk_MembresiasxSocio.Add(membsocio);
-                bd.SaveChanges();
-            }
-            if (ChkPagototal.Checked)
-            {
-                    AdicionaPagos(true);
-            }
-            else
-            {
-                    AdicionaPagos(false);
-            }
-            using (Model1 bd1 = new Model1())
-            {
-                var user = (from dato in bd1.USERINFO
-                            where dato.USERID == (vUserId)
-                            select dato).First();
+                    if (TxtDescuentoG.Text == "")
+                    {
+                        TxtDescuentoG.Text = "0";
+                    }
 
-                DateTime vfecha1n =Convert.ToDateTime( user.acc_startdate);
-                DateTime vfecha2n = Convert.ToDateTime(user.acc_enddate);
+                    membsocio.Precio = Convert.ToInt32(DtItem.Rows[ii]["precio"]);
+                    membsocio.descuento = 0;
+                    membsocio.PrecioPactado = membsocio.Precio - membsocio.descuento;
+                    membsocio.Saldo = membsocio.Precio - Convert.ToInt32(DtItem.Rows[ii]["Acuenta"]);
+                    if (ChkPagoTotalG.Checked)
+                    {
+                        membsocio.EstadoCancelacion = true;
+                        membsocio.fechaMaximadePago = DtpTerminoMG.Value;
+                    }
+                    else
+                    {
+                        membsocio.EstadoCancelacion = false;
+                    }
+                    int vIdAutorizacion = 1;
+                    if (ctr_AyuAutorizacionG.Codigo != "")
+                    {
+                        vIdAutorizacion = Convert.ToInt16(ctr_AyuAutorizacionG.Codigo);
+                    }
+                    membsocio.AutorizacionesID = vIdAutorizacion;
+                    membsocio.EstadoAnulado = false;
+                    membsocio.NroCuota = 1;
+                    membsocio.FechaAct = DateTime.Now;
 
-                if (ClsFuncGym.ActivarFechasSensor(1, vUserId, ref vfecha1n, ref vfecha2n))
-                {
-                    user.acc_startdate = vfecha1n;
-                    user.acc_enddate = vfecha2n;
+
+                    membsocio.FechaAnulacion = Convert.ToDateTime("01-01-1900");
+                    membsocio.FechaModificacion = Convert.ToDateTime("01-01-1900");
+
+                    bd.Zk_MembresiasxSocio.Add(membsocio);
+                    bd.SaveChanges();
+
+
+                    if (ChkPagoTotalG.Checked)
+
+                    {
+                        AdicionaPagos(true, ii);
+                    }
+                    else
+                    {
+                        AdicionaPagos(false, ii);
+                    }
+                    using (Model1 bd2 = new Model1())
+                    {
+                        var user = (from dato in bd2.USERINFO
+                                    where dato.USERID == (vUserIDg)
+                                    select dato).First();
+
+                        DateTime vfecha1n = Convert.ToDateTime(user.acc_startdate);
+                        DateTime vfecha2n = Convert.ToDateTime(user.acc_enddate);
+
+                        if (ClsFuncGym.ActivarFechasSensor(1, vUserIDg, ref vfecha1n, ref vfecha2n))
+                        {
+                            user.acc_startdate = vfecha1n;
+                            user.acc_enddate = vfecha2n;
+                        }
+                        else
+                        {
+                            user.acc_startdate = DtpInicioMG.Value;
+                            user.acc_enddate = DtpTerminoMG.Value;
+                        }
+                        bd2.SaveChanges();
+                    }
                 }
-                else
-                {
-                    user.acc_startdate = DtpInicioMp.Value;
-                    user.acc_enddate = DtpTerminoMp.Value;
-                }
-                bd1.SaveChanges();
             }
         }
 
         private void GrabaMembP()
         {
-            using (Model1 bd = new Model1())
+            using (Model1 bdm = new Model1())
             {
-                Zk_MembresiasxSocio membsocio = new Zk_MembresiasxSocio();
-
-                membsocio.UserInfoID = vUserId;
+                Zk_MembresiasxSocio membsocio = new Zk_MembresiasxSocio
+                {
+                    UserInfoID = vUserId
+                };
                 int vId = Convert.ToInt32(ctr_AyuMembPersonal.Codigo);
                 membsocio.MembresiasID = vId;
                 membsocio.FechaInicio = Convert.ToDateTime(DtpInicioMp.Text);
@@ -1507,8 +1588,8 @@ namespace WinAppGym
                     TxtDescuento.Text = "0";
                 }
 
-                membsocio.Precio = Convert.ToDecimal(TxtPrecio.Text);
-                membsocio.descuento = Convert.ToDecimal(TxtDescuento.Text);
+                membsocio.Precio = Convert.ToInt32(TxtPrecio.Text);
+                membsocio.descuento = Convert.ToInt32(TxtDescuento.Text);
                 membsocio.PrecioPactado = membsocio.Precio - membsocio.descuento;
                 membsocio.UsuarioID = 1;
                 if (ChkPagototal.Checked)
@@ -1518,38 +1599,53 @@ namespace WinAppGym
                 }
                 else
                 {
-                    membsocio.Saldo = membsocio.PrecioPactado - Convert.ToDecimal(TxtACuentaMp.Text);
+                    membsocio.Saldo = membsocio.PrecioPactado - Convert.ToInt32(TxtACuentaMp.Text);
                     membsocio.EstadoCancelacion = false;
                 }
                 membsocio.NroCuota = 1;
                 int vIdAutorizacion = 1;
-                if(ctr_AyuAutorizacion.Codigo!="")
+                if (ctr_AyuAutorizacion.Codigo != "")
                 {
-                    vIdAutorizacion= Convert.ToInt16(ctr_AyuAutorizacion.Codigo);
+                    vIdAutorizacion = Convert.ToInt16(ctr_AyuAutorizacion.Codigo);
                 }
-                 membsocio.AutorizacionesID = vIdAutorizacion;
+                membsocio.AutorizacionesID = vIdAutorizacion;
+                membsocio.FechaAnulacion = Convert.ToDateTime("01-01-1900");
+                membsocio.FechaModificacion = Convert.ToDateTime("01-01-1900");
                 membsocio.FechaAct = DateTime.Now;
-                membsocio.Activacion = false;
-                bd.Zk_MembresiasxSocio.Add(membsocio);
-                bd.SaveChanges();
+                membsocio.CorrelativoGrupo = 0;
+                membsocio.FechaDocumento = DateTime.Now.Date;
+                membsocio.Referencia = TxtReferencia.Text;
+                membsocio.EstadoAnulado = false;
 
-                if (ChkPagototal.Checked)
-                {
-                    AdicionaPagos(true);
-                }
-                else
-                {
-                    AdicionaPagos(false);
-                }
-
-                var user = (from dato in bd.USERINFO
+                bdm.Zk_MembresiasxSocio.Add(membsocio);
+                bdm.SaveChanges();
+            }
+            if (ChkPagototal.Checked)
+            {
+                AdicionaPagos(true, 0);
+            }
+            else
+            {
+                AdicionaPagos(false, 0);
+            }
+            using (Model1 bd2 = new Model1())
+            {
+                var user = (from dato in bd2.USERINFO
                             where dato.USERID == (vUserId)
                             select dato).First();
 
-                user.acc_startdate = Convert.ToDateTime(DtpInicioMp.Text);
-                user.acc_enddate = Convert.ToDateTime(DtpTerminoMp.Text);
-                bd.SaveChanges();
+                DateTime vfecha1 = Convert.ToDateTime(user.acc_startdate);
+                DateTime vfecha2 = Convert.ToDateTime(user.acc_enddate);
+
+                if (ClsFuncGym.ValidaFechasSensor(1, user.USERID, ref vfecha1, ref vfecha2))
+                {
+
+                    user.acc_startdate = vfecha1;
+                    user.acc_enddate = vfecha2;
+                    bd2.SaveChanges();
+                }
             }
+
         }
 
         private void GrabaModifica()
@@ -1565,7 +1661,7 @@ namespace WinAppGym
                 user.lastname = TxtApellidos.Text;
                 user.BIRTHDAY = Convert.ToDateTime(DtpNacimiento.Text);
                 user.email = TxtCorreo.Text;
-                user.Gender = ClsFuncNet.ObtenerDatoCombo (CmbGenero.Text);
+                user.Gender = ClsFunc.ObtenerDatoCombo(CmbGenero.Text);
                 user.OPHONE = TxtCelular.Text;
                 if (PicDetalle.Image == null)
                 {
@@ -1573,7 +1669,7 @@ namespace WinAppGym
                 }
                 else
                 {
-                    user.PHOTO = ClsFuncNet.ImageTobyteArray(PicDetalle.Image);
+                    user.PHOTO = ClsFunc.ImageTobyteArray(PicDetalle.Image);
                 }
                 if (ChkBaja.Checked == true)
                 {
@@ -1588,7 +1684,7 @@ namespace WinAppGym
                     user.delete_time = Convert.ToDateTime("01-01-1900");
                     user.status = 0;
                     user.hiretype = 0;
-                } 
+                }
 
                 bd.SaveChanges();
             }
@@ -1604,41 +1700,42 @@ namespace WinAppGym
         private void GrabaPagos()
         {
             if (TxtSaldo.Text == "")
-                TxtSaldo.Text = "0.00";
+                TxtSaldo.Text = "0";
 
             Int32 vMembID = 0;
 
             using (Model1 bd = new Model1())
             {
 
-                Zk_PagosSocios dd = new Zk_PagosSocios();
+                Zk_PagosSocios dd = new Zk_PagosSocios
+                {
+                    MembresiasxSocioID = Convert.ToInt32(DgvPagosMembresias.CurrentRow.Cells["PagosID"].Value),
+                    NroCuota = Convert.ToInt32(TxtNroCuota.Text) + 1,
+                    FechaPago = DateTime.Now.Date,
+                    ImportePagado = Convert.ToInt32(TxtImporte.Text),
+                    TurnoID = 1,
+                    FormaPagoID = 1,
+                    UsuarioID = 1,
+                    FechaAct = DateTime.Now
+                };
 
-                dd.MembresiasxSocioID = Convert.ToInt32(DgvPagosMembresias.CurrentRow.Cells["PagosID"].Value);
-                dd.NroCuota = Convert.ToInt32(TxtNroCuota.Text)+1;
-                dd.FechaPago = DateTime.Now.Date;
-                dd.ImportePagado = Convert.ToDecimal(TxtImporte.Text);
-                dd.TurnoID = 1;
-                dd.FormaPagoID = 1;
-                dd.UsuarioID = 1;
-                dd.FechaAct = DateTime.Now;
+                vMembID = Convert.ToInt32(dd.MembresiasxSocioID);
 
-                vMembID =Convert.ToInt32(dd.MembresiasxSocioID);
-            
                 bd.Zk_PagosSocios.Add(dd);
                 bd.SaveChanges();
             }
 
             using (Model1 bd = new Model1())
-            { 
+            {
                 var user = (from d1 in bd.Zk_MembresiasxSocio
                             where d1.ID == vMembID
                             select d1).First();
-                
-                user.NroCuota=Convert.ToInt32(TxtNroCuota.Text)+1;
-                user.Saldo= Convert.ToDecimal(TxtSaldo.Text)- Convert.ToDecimal(TxtSaldo.Text);
-                if (user.Saldo == 0)
-                    user.EstadoCancelacion =true;
 
+                user.NroCuota = Convert.ToInt32(TxtNroCuota.Text) + 1;
+                user.Saldo = Convert.ToInt32(TxtSaldo.Text) - Convert.ToInt32(TxtSaldo.Text);
+                if (user.Saldo == 0)
+                    user.EstadoCancelacion = true;
+                user.fechaMaximadePago = user.FechaFinal;
                 bd.SaveChanges();
 
             }
@@ -1664,7 +1761,7 @@ namespace WinAppGym
         {
             if (InicializaHuella() == true)
             {
-                BntRegistrar.Visible= false;
+                BntRegistrar.Visible = false;
             }
         }
 
@@ -1685,7 +1782,7 @@ namespace WinAppGym
             zkfp2.Terminate();
             cmbIdx.Items.Clear();
             cbRegTmp = 0;
-   
+
             BntInicializa.Visible = true;
             BntCierra.Visible = false;
             BntActivar.Visible = false;
@@ -1714,6 +1811,124 @@ namespace WinAppGym
                             };
 
                 DgvPagos.DataSource = query.ToList();
+            }
+        }
+
+        private void Ctr_AyuSocios_AlDevolverDato(object Sender, DataRow e)
+        {
+
+            string id = ctr_AyuSocios.Codigo;
+        }
+
+        private void BntSocios_Click(object sender, EventArgs e)
+        {
+            if (TxtDescuentoG.Text == "")
+                TxtDescuentoG.Text = "0";
+
+            if (TxtACuentaMG.Text == "")
+                TxtACuentaMG.Text = "0";
+
+            int vMontoaPagar = Int32.Parse(TxtPrecioG.Text);
+            vMontoaPagar = vMontoaPagar - Convert.ToInt32(TxtDescuentoG.Text);
+            int vAcuentaPagar = vMontoaPagar;
+
+            if (ChkPagoTotalG.Checked != true)
+                vAcuentaPagar = Convert.ToInt32(TxtACuentaMG.Text);
+
+            using (Model1 bd = new Model1())
+            {
+                string vId = Convert.ToString(ctr_AyuSocios.Codigo);
+
+                var Resultado = (from dd in bd.USERINFO
+                                 where dd.Badgenumber == vId
+                                 select dd
+                               ).First();
+
+                DataRow dtAdd = DtItem.NewRow();
+                DtItem.Rows.Add(dtAdd);
+
+                int vNro = DtItem.Rows.Count - 1;
+                DtItem.Rows[vNro]["item"] = vNro + 1;
+                DtItem.Rows[vNro]["Id"] = Resultado.USERID;
+                DtItem.Rows[vNro]["CodigoG"] = Resultado.Badgenumber;
+                DtItem.Rows[vNro]["Name"] = Resultado.Name;
+                DtItem.Rows[vNro]["LastName"] = Resultado.lastname;
+                ctr_AyuSocios.Codigo = "";
+                ctr_AyuSocios.Descripcion = "";
+
+                if (vNro + 1 == Convert.ToInt32(TxtNroSocios.Text))
+                {
+                    CalculoImporte(true, vNro, vMontoaPagar, vAcuentaPagar);
+                    ctr_AyuSocios.Visible = false;
+
+                }
+                else
+                {
+                    CalculoImporte(false, vNro, vMontoaPagar, vAcuentaPagar);
+                }
+            }
+
+        }
+        private void CalculoImporte(Boolean vTipo, int vnro, Int32 vPagoTotal, Int32 vAcuentaTotal)
+        {
+            Int32 vImporte = Convert.ToInt32(vPagoTotal / Convert.ToInt32(TxtNroSocios.Text));
+            Int32 vAcuenta = Convert.ToInt32(vAcuentaTotal / Convert.ToInt32(TxtNroSocios.Text));
+            if (vTipo != true)
+            {
+                DtItem.Rows[vnro]["Precio"] = vImporte;
+                DtItem.Rows[vnro]["Acuenta"] = vAcuenta;
+            }
+            else
+            {
+                DtItem.Rows[vnro]["Precio"] = vPagoTotal - vImporte * (DtItem.Rows.Count - 1);
+                DtItem.Rows[vnro]["Acuenta"] = vAcuentaTotal - vAcuenta * (DtItem.Rows.Count - 1);
+            }
+        }
+
+        private void DtpInicioMG_ValueChanged(object sender, EventArgs e)
+        {
+            Int32 vMeses = Convert.ToInt32(TxtMesesG.Text);
+            Int32 vDias = Convert.ToInt32(TxtDiasG.Text);
+            DtpTerminoMG.Value = DtpInicioMG.Value.AddMonths(vMeses);
+            DtpTerminoMG.Value = DtpTerminoMG.Value.AddDays(vDias);
+            DtpMaxPagoMG.Value = DtpInicioMG.Value.AddDays(-1);
+
+        }
+
+        private void Ctr_AyuMembGrupo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvSociosG_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void TxtACuentaMG_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChkAsistencia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkAsistencia.Checked == true)
+            {
+                using (Model1 bd5 = new Model1())
+                {
+                    var qAsistencia = (from  asis in bd5.Zk_Asistencia
+                                       where asis.UserInfoID == vUserId
+                                       orderby asis.FechaAsistencia descending
+                                       select new
+                                       {
+                                           asis.FechaAsistencia
+                                       }).Take(60);
+                    DgvAsistencia.DataSource = qAsistencia.ToList();
+                }
+            }
+            else
+            {
+                DgvAsistencia.DataSource = null;
             }
         }
     }

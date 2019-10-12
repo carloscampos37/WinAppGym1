@@ -16,7 +16,7 @@ namespace WinAppGym.Models
 
         public DateTime? FechaPago { get; set; }
 
-        public decimal? ImportePagado { get; set; }
+        public int? ImportePagado { get; set; }
 
         public int? TurnoID { get; set; }
 

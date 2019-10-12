@@ -9,6 +9,13 @@ namespace WinAppGym.Models
     [Table("USERINFO")]
     public partial class USERINFO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public USERINFO()
+        {
+            Zk_Asistencia = new HashSet<Zk_Asistencia>();
+            Zk_MembresiasxSocio = new HashSet<Zk_MembresiasxSocio>();
+        }
+
         [Key]
         public int USERID { get; set; }
 
@@ -232,5 +239,11 @@ namespace WinAppGym.Models
 
         [StringLength(50)]
         public string carColor { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zk_Asistencia> Zk_Asistencia { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zk_MembresiasxSocio> Zk_MembresiasxSocio { get; set; }
     }
 }

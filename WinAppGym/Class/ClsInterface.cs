@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Class;
+using Clases;
+using WinAppGym.Properties;
 
 namespace Clases
 {
-    interface ClsInterface
+    public class ClsInterface
     {
-        public Cls
-    }
+        public static string VgCnxSql = Settings.Default.CadenaConexion;
+     }
 }
